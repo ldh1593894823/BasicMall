@@ -68,7 +68,7 @@
                             <ul v-for="(son_item,son_index) in item.son_selector">
                                 <li @click="clected(index,son_index)" v-bind:class="{active:son_item.is_selected}">
                                     <a href="#">
-                                        <i :class="[ son_item.is_selected ? 'icon-circle' : 'icon-circle-blank' ]" class="icon"></i>{{son_item.name}}
+                                        <i :class="[ son_item.is_selected ? 'icon-dot-circle' : 'icon-circle-blank' ]" class="icon"></i>{{son_item.name}}
                                     </a>
                                 </li>
                             </ul>
@@ -79,7 +79,7 @@
             </div>
 
             <div class="content">
-                <iframe src="../../user/login.html" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+                <iframe src="editor_shop.html" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
 
             </div>
 

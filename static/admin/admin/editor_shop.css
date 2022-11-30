@@ -1,0 +1,24 @@
+.main_css {
+    display: flex;
+    justify-content: center;
+    min-width: 1200px;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(248, 248, 248, 0.952);
+}
+
+.main_content {
+    width: 80%;
+    height: 400px;
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.internal {
+    height: calc(100% - 60px);
+    width: calc(100% - 60px);
+}

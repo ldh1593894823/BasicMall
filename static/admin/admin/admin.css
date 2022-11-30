@@ -22,7 +22,6 @@
 }
 
 .content {
-    /* width: 100%; */
     background-color: aquamarine;
     flex: 1;
 }
