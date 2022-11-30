@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>后台首页</title>
+
+    <link link rel="stylesheet" type="text/css" href="./admin.css">
+
+    <script src="../../js/plugins/vue.global.js"></script>
+    <script src="../api.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/css/zui.min.css">
+    <link rel="stylesheet" href="../zui-theme.css">
+    <script src="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/lib/jquery/jquery.js"></script>
+    <script src="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/js/zui.min.js"></script>
+</head>
+
+<body>
+    <div id="app" class="main_css">
+
+        <!-- 头部 -->
+        <div class="top_navigation">
+            <nav class="navbar navbar-inverse" style="height: 100%;" role="navigation">
+                <div class="container-fluid">
+                    <!-- 导航头部 -->
+                    <div class="navbar-header">
+                        <!-- 移动设备上的导航切换按钮 -->
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-example">
+                            <span class="sr-only">切换导航</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- 品牌名称或logo -->
+                        <img src="../../img/Logo.png" alt="">
+                    </div>
+                    <!-- 导航项目 -->
+                    <div class="collapse navbar-collapse navbar-collapse-example">
+                        <!-- 一般导航项目 -->
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="your/nice/url">项目</a></li>
+                            <li><a href="your/nice/url">需求</a></li>
+                            <!-- 导航中的下拉菜单 -->
+                            <li class="dropdown">
+                                <a href="your/nice/url" class="dropdown-toggle" data-toggle="dropdown">管理 <b
+                                        class="caret"></b></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="your/nice/url">任务</a></li>
+                                    ...
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END .navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+        <!-- 中间区域 -->
+        <div class="context">
+            <!-- 左侧导航栏 -->
+            <div class="list_selecter">
+                <nav class="menu" data-ride="menu" style="width: 100%">
+                    <ul id="treeMenu" class="tree tree-menu" data-ride="tree">
+                        <li v-for="(item,index) in selector_data " class="open">
+                            <a href="#"><i :class="item.class_css" class="icon"></i>{{item.name}}</a>
+                            <ul v-for="(son_item,son_index) in item.son_selector">
+                                <li @click="clected(index,son_index)" v-bind:class="{active:son_item.is_selected}">
+                                    <a href="#">
+                                        <i :class="[ son_item.is_selected ? 'icon-circle' : 'icon-circle-blank' ]" class="icon"></i>{{son_item.name}}
+                                    </a>
+                                </li>
+                            </ul>
+                            <p></p>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="content">
+                <iframe src="../../user/login.html" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script src="./admin.js" type="text/javascript"></script>
+
+</html>

@@ -1,0 +1,50 @@
+/* @import "../variables.theme.less"; */
+
+body {
+    cursor: url(../../img/qq.png), auto;
+}
+
+.main_css {
+    /* width: calc(--100vh); */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(112, 119, 207);
+    background: linear-gradient(125deg, #2c3e50, #27ae60, #2980b9, #e74c3c, #8e44ad);
+    background-size: 310%;
+    animation: bgAnimation 15s linear infinite;
+    box-shadow: 2.4px 3px 4px rgba(0, 0, 0, 0.021), 6.6px 8.3px 11px rgba(0, 0, 0, 0.03), 16px 19.9px 26.5px rgba(0, 0, 0, 0.039), 53px 66px 88px rgba(0, 0, 0, 0.06);
+}
+
+.login_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 28%;
+    height: 34%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 2%;
+}
+
+.internal_box {
+    width: 80%;
+}
+
+.top_box {
+    margin-top: 22px;
+    /* margin: 11px; */
+}
+
+@keyframes bgAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

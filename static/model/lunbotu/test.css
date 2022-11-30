@@ -1,0 +1,116 @@
+/*去除标签自带的样式*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/*设置整个轮播图的布局*/
+
+.carousel {
+    position: relative;
+    margin: 40px auto;
+    width: 1300px;
+    height: 560px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /*超出部分隐藏*/
+    overflow: hidden;
+}
+
+
+/*设置背景图片的布局*/
+
+.content {
+    position: absolute;
+    z-index: 1;
+}
+
+
+/*设置左移、右移图标和指示器的布局*/
+
+.pos,
+.dot {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+}
+
+
+/*设置左移、右移图标先垂直居中、不显示*/
+
+.pos {
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+
+
+/*设置左移、右移图标的背景*/
+
+.pos>a {
+    padding: 10px 0;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+/*设置左移图标的位置*/
+
+.left {
+    float: left;
+}
+
+
+/*设置右移图标的位置*/
+
+.right {
+    float: right;
+}
+
+
+/*设置指示器显示的位置*/
+
+.dot {
+    bottom: 30px;
+    text-align: center;
+}
+
+
+/*设置指示器的背景*/
+
+.dot ul {
+    display: inline-block;
+    padding: 2px;
+    background: rgba(0, 0, 0, .2);
+    border-radius: 15px;
+}
+
+
+/*设置圆点的大小*/
+
+.dot>ul>li {
+    float: left;
+    margin: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+
+
+/*设置显示当前图片时指示器指示的位置*/
+
+.active {
+    background: rgba(0, 0, 0, 0.6) !important;
+}
