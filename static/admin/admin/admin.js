@@ -5,6 +5,7 @@ const {
 createApp({
     data() {
         return {
+            admin_page: "shop_list.html",
             active_css: false,
 
             icon_logo: {
@@ -13,14 +14,31 @@ createApp({
             },
 
 
-            selector_data: [
-                { name: "主页", class_css: "icon-th", son_selector: [{ name: "主页", class_css: "icon-circle", is_selected: false }] },
+            selector_data: [{
+                    name: "主页",
+                    class_css: "icon-th",
+                    son_selector: [
+                        { name: "主页", class_css: "icon-circle", is_selected: false }
+                    ]
+                },
                 {
                     name: "商品管理",
                     class_css: "icon-time",
-                    son_selector: [{ name: "所有商品", class_css: "icon-circle", is_selected: false }, { name: "添加商品", class_css: "icon-circle", is_selected: false }]
+                    son_selector: [
+                        { name: "所有商品", class_css: "icon-circle", is_selected: false, src: "shop_list.html" },
+                        { name: "添加商品", class_css: "icon-circle", is_selected: false, src: "editor_shop.html" }
+                    ]
                 },
-                { name: "订单管理", class_css: "icon-book", son_selector: [{ name: "所有订单", class_css: "icon-circle", is_selected: false }, { name: "待付款", class_css: "icon-circle", is_selected: false }, { name: "待发货", class_css: "icon-circle", is_selected: false }, { name: "待收货", class_css: "icon-circle", is_selected: false }] },
+                {
+                    name: "订单管理",
+                    class_css: "icon-book",
+                    son_selector: [
+                        { name: "所有订单", class_css: "icon-circle", is_selected: false, src: "all_order.html" },
+                        { name: "待付款", class_css: "icon-circle", is_selected: false },
+                        { name: "待发货", class_css: "icon-circle", is_selected: false },
+                        { name: "待收货", class_css: "icon-circle", is_selected: false }
+                    ]
+                },
                 { name: "评价管理", class_css: "icon-comments", son_selector: [{ name: "评价管理", class_css: "icon-circle", is_selected: false }] },
                 { name: "公告管理", class_css: "icon-comments", son_selector: [{ name: "公告管理", class_css: "icon-circle", is_selected: false }] },
             ]
@@ -33,10 +51,9 @@ createApp({
                 for (let j = 0; j < this.selector_data[i].son_selector.length; j++) {
                     this.selector_data[i].son_selector[j].is_selected = false
                 }
-
-
             }
             this.selector_data[index].son_selector[sondex].is_selected = !this.selector_data[index].son_selector[sondex].is_selected
+            this.admin_page = this.selector_data[index].son_selector[sondex].src
         }
     },
     mounted: function() {
