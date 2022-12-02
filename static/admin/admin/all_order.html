@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>后台首页</title>
+
+    <link link rel="stylesheet" type="text/css" href="./shop_list.css">
+
+    <script src="../../js/plugins/vue.global.js"></script>
+    <script src="../api.js"></script>
+
+    <link rel="stylesheet" href="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/css/zui.min.css">
+    <link rel="stylesheet" href="../zui-theme.css">
+    <script src="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/lib/jquery/jquery.js"></script>
+    <script src="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/js/zui.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="app" class="main_css">
+
+        <div class="main_content">
+
+            <div class="internal">
+
+                <!-- 顶部标题部分 -->
+                <div class="shop_list_title">
+                    <p class="tile_text">商品名称</p>
+                    <p class="tile_text">价格</p>
+                    <p class="tile_text">订单号</p>
+                    <p class="tile_text">库存</p>
+                    <p class="tile_text">操作</p>
+                </div>
+
+                <div v-for="lala in shop_list_data " class="shop_for_list">
+                    <div class="image_and_title">
+                        <img class="image_css" src="https://www.openzui.com/docs/img/img2.jpg" alt="">
+                        <p class="shop_list_text">{{lala.name}}</p>
+                    </div>
+
+                    <div class="image_and_title">
+                        <p class="shop_list_text" style="margin-left: 33px;">￥ 2.00</p>
+                    </div>
+
+                    <div class="image_and_title">
+                        <p class="shop_list_text" style="margin-left: 22px;">2</p>
+                    </div>
+
+                    <div class="image_and_title">
+                        <p class="shop_list_text" style="margin-left: 22px;">2</p>
+                    </div>
+
+                    <div class="image_and_title">
+                        <div class="shop_list_text">
+                            <div class="btn-group">
+                                <button class="btn  btn-primary">修改</button>
+                                <button class="btn  btn-primary">删除</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+
+<script src="./shop_list.js" type="text/javascript"></script>
+
+</html>
