@@ -1,4 +1,5 @@
 .main_css {
+    overflow: hidden;
     min-width: 1200px;
     flex-wrap: wrap;
     flex-direction: row;

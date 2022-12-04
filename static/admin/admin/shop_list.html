@@ -36,22 +36,22 @@
                     <p class="tile_text">操作</p>
                 </div>
 
-                <div v-for="lala in shop_list_data " class="shop_for_list">
+                <div v-for="list in shop_list_data " class="shop_for_list">
                     <div class="image_and_title">
-                        <img class="image_css" src="https://www.openzui.com/docs/img/img2.jpg" alt="">
-                        <p class="shop_list_text">{{lala.name}}</p>
+                        <img class="image_css" :src="'http://127.0.0.1:8080/static/image/'+list.myimage[0]"  alt="">
+                        <p class="shop_list_text">{{list.name}}</p>
                     </div>
 
                     <div class="image_and_title">
-                        <p class="shop_list_text" style="margin-left: 33px;">￥ 2.00</p>
+                        <p class="shop_list_text" style="margin-left: 33px;">￥ {{list.price}}</p>
                     </div>
 
                     <div class="image_and_title">
-                        <p class="shop_list_text" style="margin-left: 22px;">2</p>
+                        <p class="shop_list_text" style="margin-left: 22px;">{{list.sales}}</p>
                     </div>
 
                     <div class="image_and_title">
-                        <p class="shop_list_text" style="margin-left: 22px;">2</p>
+                        <p class="shop_list_text" style="margin-left: 22px;">{{list.num}}</p>
                     </div>
 
                     <div class="image_and_title">

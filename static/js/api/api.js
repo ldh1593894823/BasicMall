@@ -1,4 +1,4 @@
-var host = "http://pu2crp.natappfree.cc"
+var host = "http://127.0.0.1:8080";
 
 /**
  * 封装数据包接口
@@ -62,13 +62,14 @@ async function api_login(send, callback) {
 }
 
 /**
- * 获取新上的和爆款商品8个
+ * 获取商品接口
+ * @param hot_shop 热销商品
  * @returns msg:返回信息,result：状态 ok\error
  */
 async function api_new_hot_shop(send, callback) {
     let settings = {
-        "url": host + "/new_hot_shop/",
-        "method": "GET",
+        "url": host + "/find_shoping/",
+        "method": "POST",
         "data": send
     }
     let return_data = { msg, result } = await request(settings)

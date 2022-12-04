@@ -5,17 +5,23 @@ const {
 createApp({
     data() {
         return {
+            will_send_data: {
+                find_type: 'all'
+            },
             shop_list_data: [
-                { name: "123" },
-                { name: "456" },
-                { name: "789" },
-                { name: "102" },
-                { name: "789" },
+                // { name: "", price: '', num: '', category: '', sales: '', myimage: [] },
             ],
         }
     },
-    methods: {},
+    methods: {
+
+    },
     mounted: function() {
-        console.log("初始化成功")
+        api_find_shoping(this.will_send_data, res => {
+            if (res.result == 'ok') {
+                console.log(res)
+                this.shop_list_data = res.shop_list
+            }
+        })
     }
 }).mount('#app')
