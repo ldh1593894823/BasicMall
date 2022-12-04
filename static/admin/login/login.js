@@ -38,6 +38,7 @@ createApp({
                     this.Scuuess().show(res.msg)
                     $.zui.store.pageSet('date', res.cookies); // 将一个对象存储到本地存储
                     console.log($.zui.store.pageGet('date')); // 从本地存储获取'name'的值
+                    window.location.href = "../admin/admin.html";
                 } else {
                     this.Wrring().show(res.msg);
                 }

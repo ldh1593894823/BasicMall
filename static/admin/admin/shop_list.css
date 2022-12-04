@@ -3,14 +3,14 @@
     align-items: center;
     flex-direction: column;
     min-width: 1200px;
-    height: 100vh;
+    height: auto;
     width: 100%;
     background-color: rgba(248, 248, 248, 0.952);
 }
 
 .main_content {
     width: 80%;
-    height: 800px;
+    height: auto;
     margin-top: 40px;
     background-color: rgb(255, 255, 255);
     border-radius: 16px;
@@ -23,6 +23,7 @@
 .internal {
     height: calc(100% - 60px);
     width: calc(100% - 60px);
+    margin-bottom: 30px;
 }
 
 .shop_list_title {
@@ -34,6 +35,7 @@
     height: 40px;
     background-color: rgba(233, 233, 233, 0.767);
     border-radius: 3px;
+    margin-top: 30px;
 }
 
 .shop_for_list {
