@@ -7,8 +7,13 @@ var host = "http://127.0.0.1:8080";
  * @returns 返回后端数据
  */
 async function request(data_settings) {
+    //将本地存储用户信息增加到发送数据包，用于后台需要取用cookies时使用
+    data_settings.data = Object.assign({}, data_settings.data, { user_data: $.zui.store.get('user_info') })
     let data = await $.ajax(data_settings)
-    console.log(data)
+    console.log('响应数据', data)
+    if (data.result == "not_permission") { //如果没权限弹出登录
+        window.parent.postMessage({ type: 'check', data: ["自定义需要发送的数据"] }, '*')
+    }
     return data
 }
 
@@ -16,7 +21,7 @@ async function request(data_settings) {
  * 超级管理员登录
  * @param username 用户密码
  * @param password 手机号
- * @returns msg:返回信息,result：状态 ok\error,cookies
+ * @returns msg:返回信息,result：状态 ok\error,cookies,login_user
  */
 async function api_login_admin(send, callback) {
     let settings = {
@@ -24,7 +29,7 @@ async function api_login_admin(send, callback) {
         "method": "POST",
         "data": send
     }
-    let return_data = { msg, result, cookies } = await request(settings)
+    let return_data = { msg, result, cookies, user_type, login_user } = await request(settings)
     callback(return_data)
 }
 
@@ -50,7 +55,7 @@ async function api_add_shop(send, callback) {
 
 /**
  * 查询所有商品
- * @param type 查询类型
+ * @param type 查询类型 三种/所有(需验证cookies)\热销\上新
  * @returns msg:返回信息,result：状态 ok\error,cookies
  */
 async function api_find_shoping(send, callback) {

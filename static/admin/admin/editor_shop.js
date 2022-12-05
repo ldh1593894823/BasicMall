@@ -41,6 +41,7 @@ createApp({
             } else {
                 api_add_shop(this.willsend_data, res => {
                     console.log(res)
+                    window.location.href = "shop_list.html";
                 })
             }
         }
@@ -60,9 +61,7 @@ createApp({
             responseHandler: (res) => {
                 let response_img = (JSON.parse(res.response))
                 if (response_img.result == 'ok') {
-                    console.log('回调相应', response_img);
                     this.willsend_data.imageList.push(response_img.image_name)
-                    console.log(this.willsend_data)
                 }
             }
         };
@@ -76,11 +75,8 @@ createApp({
 
             onSelect: function(event) {
                 _this.willsend_data.shop_category = String(event.value)
-                console.log(_this.willsend_data.shop_category)
             }
         };
         var picker_ = $('#catgoary').picker(picker_options);
-        console.log(my_uploader)
-        console.log(picker_)
     }
 }).mount('#app')

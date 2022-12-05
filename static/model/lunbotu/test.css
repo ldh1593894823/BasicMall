@@ -19,8 +19,8 @@ a {
 .carousel {
     position: relative;
     margin: 40px auto;
-    width: 1300px;
-    height: 560px;
+    width: 1600px;
+    height: 650px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     /*超出部分隐藏*/

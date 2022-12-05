@@ -15,13 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from polls import views
+from polls import views , adminster_valida
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', views.register), #用户注册
-    path('login/', views.login), #普通用户登录
-    path('login_admin/', views.login_admin), #超级管理员登录
+    path('register/', views.register),          #普通用户注册
+    path('login/', views.login),                #普通用户登录
+    path('login_admin/', adminster_valida.login_admin), #超级管理员登录
     path('add_shop/', views.add_shop), #添加商品
     path('find_shoping/', views.find_shoping),    #查询商品
     path('upload/', views.upload),    #上传文件
