@@ -41,7 +41,7 @@ async function api_login(send, callback) {
         "method": "POST",
         "data": send
     }
-    let return_data = { msg, result } = await request(settings)
+    let return_data = { msg, result, user_type, login_user } = await request(settings)
     callback(return_data)
 }
 
