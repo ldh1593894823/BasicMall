@@ -67,3 +67,48 @@ async function api_find_shoping(send, callback) {
     let return_data = { msg, result, cookies } = await request(settings)
     callback(return_data)
 }
+
+/**
+ * 添加公告
+ * @param title: 公告标题
+ * @param content:公告内容
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function add_announcement(send, callback) {
+    let settings = {
+        "url": host + "/add_announcement/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result, cookies } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 获取公告列表
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function all_announcement(send, callback) {
+    let settings = {
+        "url": host + "/all_announcement/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result, cookies } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 获取公告列表
+ * @param id:公告的id
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function del_announcement(send, callback) {
+    let settings = {
+        "url": host + "/del_announcement/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result, cookies } = await request(settings)
+    callback(return_data)
+}

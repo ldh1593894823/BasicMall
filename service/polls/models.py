@@ -11,8 +11,10 @@ class Adminster(models.Model): # 超级管理员
     password = models.CharField(max_length=32)  # 密码
 
 #公告
-class Comments(models.Model):
-    comment = models.CharField(max_length=64)  # 公告
+class Announcement(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
+    title = models.CharField(max_length=64) #公告标题
+    content = models.CharField(max_length=128)  # 公告
 
 # 普通用户
 class User(models.Model): 
