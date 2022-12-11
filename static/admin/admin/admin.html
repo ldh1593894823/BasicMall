@@ -22,33 +22,32 @@
 
         <!-- 头部 -->
         <div class="top_navigation">
-            <nav class="navbar navbar-inverse" style="height: 100%;" role="navigation">
+            <nav class="navbar navbar-inverse" style="height: 60px;" role="navigation">
                 <div class="container-fluid">
                     <!-- 导航头部 -->
                     <div class="navbar-header">
                         <!-- 移动设备上的导航切换按钮 -->
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-example">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-collapse-example">
                             <span class="sr-only">切换导航</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <!-- 品牌名称或logo -->
-                        <img src="../../img/Logo.png" alt="">
+                        <a href="/index.html">
+                            <img src="../../img/Logo.png" alt="">
+                        </a>
                     </div>
                     <!-- 导航项目 -->
                     <div class="collapse navbar-collapse navbar-collapse-example">
                         <!-- 一般导航项目 -->
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="your/nice/url">项目</a></li>
-                            <li><a href="your/nice/url">需求</a></li>
+                        <ul class="nav navbar-nav navbar-right">
                             <!-- 导航中的下拉菜单 -->
                             <li class="dropdown">
                                 <a href="your/nice/url" class="dropdown-toggle" data-toggle="dropdown">管理 <b
                                         class="caret"></b></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="your/nice/url">任务</a></li>
-                                    ...
+                                    <li><a href="your/nice/url">注销</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -68,7 +67,8 @@
                             <ul v-for="(son_item,son_index) in item.son_selector">
                                 <li @click="clected(index,son_index)" v-bind:class="{active:son_item.is_selected}">
                                     <a href="#">
-                                        <i :class="[ son_item.is_selected ? 'icon-dot-circle' : 'icon-circle-blank' ]" class="icon"></i>{{son_item.name}}
+                                        <i :class="[ son_item.is_selected ? 'icon-dot-circle' : 'icon-circle-blank' ]"
+                                            class="icon"></i>{{son_item.name}}
                                     </a>
                                 </li>
                             </ul>
