@@ -33,7 +33,7 @@ createApp({
                     ]
                 },
                 { name: "评价管理", class_css: "icon-comments", son_selector: [{ name: "评价管理", class_css: "icon-circle", is_selected: false }] },
-                { name: "公告管理", class_css: "icon-comments", son_selector: [{ name: "公告管理", class_css: "icon-circle", is_selected: false }] },
+                { name: "公告管理", class_css: "icon-comments", son_selector: [{ name: "公告管理", class_css: "icon-circle", is_selected: false ,src:"announcement.html"}] },
             ]
         }
     },
