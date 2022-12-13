@@ -129,10 +129,11 @@
                     <ul class="yui3-g" id="goods-list">
                         <li v-for="list in hot_shop_list" class="yui3-u-1-4">
                             <div class="list-wrap">
-                                <div class="p-img"><img :src="'http://127.0.0.1:8080/static/image/'+list.myimage[0]" alt=''></div>
+                                <div class="p-img"><img :src="'http://192.168.31.127:8080/static/image/'+list.myimage[0]" alt=''></div>
                                 <div class="price"><strong><em>¥</em> <i>{{list.price}}</i></strong></div>
                                 <div class="attr"><em>{{list.name}}</em></div>
                                 <div class="operate">
+                                    <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">立即购买</a>
                                     <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">立即购买</a>
                                 </div>
                             </div>
@@ -151,7 +152,7 @@
                     <ul class="yui3-g" id="goods-list">
                         <li v-for="list in new_shop_list" class="yui3-u-1-4">
                             <div class="list-wrap">
-                                <div class="p-img"><img :src="'http://127.0.0.1:8080/static/image/'+list.myimage[0]" alt=''></div>
+                                <div class="p-img"><img :src="'http://192.168.31.127:8080/static/image/'+list.myimage[0]" alt=''></div>
                                 <div class="price"><strong><em>¥</em> <i>{{list.price}}</i></strong></div>
                                 <div class="attr"><em>{{list.name}}</em></div>
                                 <div class="operate">
