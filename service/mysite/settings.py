@@ -88,7 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'shooping',
-        'HOST': '182.149.106.122',
+        'HOST': '221.237.34.242',
         'PORT': '3006',
         'USER': 'root',
         'PASSWORD': '123456',
