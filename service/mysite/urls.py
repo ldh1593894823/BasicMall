@@ -22,11 +22,15 @@ urlpatterns = [
     path('register/', views.register),          #普通用户注册
     path('login/', views.login),                #普通用户登录
     path('login_admin/', adminster_valida.login_admin), #超级管理员登录
-    path('add_shop/', adminster_valida.add_shop), #添加商品
+
+    path('add_shop/', adminster_valida.manage_shop.add_shop), #添加商品
+    path('del_shop/', adminster_valida.manage_shop.del_shop), #删除商品
+
     path('find_shoping/', views.find_shoping),    #查询商品
     path('upload/', adminster_valida.upload),     #上传文件
-    path('add_announcement/', adminster_valida.add_announcement),     #添加公告
-    path('all_announcement/', adminster_valida.all_announcement),     #所有公告
-    path('del_announcement/', adminster_valida.del_announcement),     #删除公告
+    
+    path('add_announcement/', adminster_valida.Announcement.add_announcement),     #添加公告
+    path('all_announcement/', adminster_valida.Announcement.all_announcement),     #所有公告
+    path('del_announcement/', adminster_valida.Announcement.del_announcement),     #删除公告
 
 ]

@@ -40,12 +40,28 @@ async function api_login_admin(send, callback) {
  * @param shop_category 商品分类
  * @param shop_num      商品数量
  * @param imageList     图片数组类型
- * @returns msg:返回信息,result：状态 ok\error,cookies
+ * @returns msg:返回信息,result：状态 ok\无权限
  */
 async function api_add_shop(send, callback) {
     send.imageList = '1' + JSON.stringify(send.imageList)
     let settings = {
         "url": host + "/add_shop/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result, cookies } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 删除商品
+ * @returns msg:返回信息,result：状态 ok\无权限
+ * @param id 商品id
+ */
+async function del_shop(send, callback) {
+    send.imageList = '1' + JSON.stringify(send.imageList)
+    let settings = {
+        "url": host + "/del_shop/",
         "method": "POST",
         "data": send
     }
