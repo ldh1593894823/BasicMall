@@ -57,36 +57,80 @@
 
     <div class="swi-bg">
         <div class="grounding">
+            <div class="ground-left">
+                <div id="myNiceCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- 圆点指示器 -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myNiceCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myNiceCarousel" data-slide-to="1"></li>
+                        <li data-target="#myNiceCarousel" data-slide-to="2"></li>
+                    </ol>
 
-            <div id="myNiceCarousel" class="carousel slide" data-ride="carousel">
-                <!-- 圆点指示器 -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myNiceCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myNiceCarousel" data-slide-to="1"></li>
-                    <li data-target="#myNiceCarousel" data-slide-to="2"></li>
-                </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img alt="First slide"
+                                src="http://192.168.31.127:8080/static/image/o_1gjeqnib4666rpggd1q551gl3a.jpg">
+                        </div>
+                        <div class="item">
+                            <img alt="Second slide"
+                                src="http://192.168.31.127:8080/static/image/o_1gjepgpov7a1he618lievmvnna.jpg">
+                        </div>
+                        <div class="item">
+                            <img alt="Third slide" src="http://openzui.com/docs/img/slide3.jpg">
+                        </div>
+                    </div>
 
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img alt="First slide"
-                            src="http://192.168.31.127:8080/static/image/o_1gjeqnib4666rpggd1q551gl3a.jpg">
-                    </div>
-                    <div class="item">
-                        <img alt="Second slide"
-                            src="http://192.168.31.127:8080/static/image/o_1gjepgpov7a1he618lievmvnna.jpg">
-                    </div>
-                    <div class="item">
-                        <img alt="Third slide" src="http://openzui.com/docs/img/slide3.jpg">
-                    </div>
+
                 </div>
 
 
             </div>
 
 
+
+            <div class="ground-right">
+                <h2>商品名称</h2>
+                <p style="color: gray;">月销 5</p>
+                <p style="color: red;font-size: 15px;">￥ <span style="font-size: 30px;">400</span></p><br>
+                <p style="color: gray;">配送：<span style="color: black;">云南昆明 至 成都市 金堂县</span><span><br>　　　快递：免运费</span>
+                </p><br>
+                <!-- <div style="display: flex;flex-direction: row;">
+                    <p style="color: gray;">颜色分类：</p>
+                    <div style="display: flex;flex-direction: column;">
+                        <div style="display: flex;flex-direction: row;">
+                            <button class="btn1" type="button">默认大小按钮</button>
+                            <button class="btn1" type="button">默认大小按钮</button>
+                            <button class="btn1" type="button">默认大小按钮</button>
+                        </div>
+                        <div style="display: flex;flex-direction: row;margin-top: 8px;">
+                            <button class="btn1" type="button">默认大小按钮</button>
+                            <button class="btn1" type="button">默认大小按钮</button>
+                            <button class="btn1" type="button">默认大小按钮</button>
+                        </div>
+                      
+                    </div>
+                </div> -->
+                <br>
+                <div style="display: flex;flex-direction: row;">
+                    <p style="color: gray;">数量：</p>
+                    <div style="margin-left: 35px;">
+                        <button onclick="numred" class="btn2" type="button">-</button>
+                        <input id="addtext" class="inpu" type="text" value="1">
+                        <button onclick="numadd()" class="btn2" type="button">+</button>
+
+                    </div>
+                </div>
+<br><br>
+                <div class="car">
+                    
+                    <button class="btn3" type="button"><span class="car-btn">加入购物车</span></button>
+                </div>
+
+            </div>
+
+
         </div>
     </div>
-
 
 
 </body>

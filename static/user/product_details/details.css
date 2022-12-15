@@ -89,6 +89,8 @@ width: 60%;
 margin-top: 15px;
 border-radius: 25px;
 background-color: rgb(255, 255, 255);
+display: flex;
+flex-direction: row;
 
 }
 .carousel-inner{
@@ -96,7 +98,55 @@ height: 500px;
 width: 500px;
 margin-top: 15px;
 margin-left: 15px;
-border-radius: 25px;
+border-radius: 20px;
+}
+.ground-left{
+  height: 600px;
+  width: 520px;
+  /* background-color: aquamarine; */
 }
 
+.ground-right{
+height: 600px;
+width: 520px;
+margin-left: 25px;
+/* background-color: bisque; */
+}
 
+/* .btn1{
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 10px;
+  
+}
+.btn1:hover{
+  color: #ff5000;
+  border-color: #ff5000;
+  background-color: #fff7f3;
+} */
+
+.btn2{
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
+}
+.inpu{
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+}
+
+.btn3{
+height: 50px;
+width: 200px;
+background-color: #ffc000;
+border: 0;
+border-radius: 30px;
+}
+.car-btn{
+  font-size: large;
+  color: white;
+}
