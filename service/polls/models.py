@@ -36,6 +36,7 @@ class Shopping(models.Model):
 
 #购物车
 class Shop_cart(models.Model):
-    user_id = models.CharField(max_length=64)  #用户id
-    shop_num = models.CharField(max_length=16) #加购数量
+    id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
+    user_id = models.CharField(max_length=64)  #用户手机号
+    shop_num = models.IntegerField(max_length=16) #加购数量
     shop_id = models.CharField(max_length=64)  #商品id

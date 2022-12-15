@@ -18,7 +18,25 @@ createApp({
             }],
         }
     },
-    methods: {},
+    methods: {
+        Wrring() {
+            return new $.zui.Messager({
+                type: 'success',
+                icon: 'check',
+                placement: 'top',
+                time: 2000
+            });
+        },
+
+        clicked_shopcar(e){
+            console.log(e.target.id)
+            add_shop_car({shop_id:e.target.id,add_shop_num:1},res=>{
+                if (res.result == 'ok') {
+                    this.Wrring().show("购物车添加成功")
+                }
+            })
+        }
+    },
     mounted: function() {
         api_new_hot_shop({ find_type: 'hot_shop' }, res => {
             if (res.result == 'ok') {

@@ -33,4 +33,9 @@ urlpatterns = [
     path('all_announcement/', adminster_valida.Announcement.all_announcement),     #所有公告
     path('del_announcement/', adminster_valida.Announcement.del_announcement),     #删除公告
 
+    path('add_shop_car/', views.add_shop_car),    #添加一件商品到购物车
+    path('all_shop_car/', views.all_shop_car),    #查询当前用户所有购物车内容
+    path('del_shop_car/', views.del_shop_car),    #查询当前用户所有购物车内容
+    
+    
 ]

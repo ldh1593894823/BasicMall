@@ -10,6 +10,11 @@
     <link rel="icon" href=".././img/favicon.ico">
     <link rel="stylesheet" type="text/css" href=".././css/all.css" />
     <link rel="stylesheet" type="text/css" href=".././css/pages-register.css" />
+
+    <link rel="stylesheet" href="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/css/zui.min.css">
+    <link rel="stylesheet" href="/css//zui-theme.css">
+    <script src="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/lib/jquery/jquery.js"></script>
+    <script src="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/js/zui.min.js"></script>
 </head>
 
 <body>
@@ -43,22 +48,24 @@
                 <!--头部-->
                 <div class="header">
                     <div class="py-container">
-                        <div class="yui3-g Logo">
+                        <div class="yui3-g Logo" style=" width: 100%;">
                             <div class="yui3-u Left logoArea">
-                                <a class="logo-bd" title="青橙" href="index.html" target="_blank"></a>
+                                <a class="logo-bd" title="阿尼尔" href="index.html" target="_blank"></a>
                             </div>
                             <div class="yui3-u Rit searchArea">
                                 <div class="search">
                                     <form action="" class="sui-form form-inline">
                                         <!--searchAutoComplete-->
                                         <div class="input-append">
-                                            <input type="text" id="autocomplete" class="input-error input-xxlarge" />
+                                            <input style="width: 502px;height: 32px;" type="text" id="autocomplete" class="input-error input-xxlarge" />
                                             <button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
+
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -74,25 +81,25 @@
                         <div class="control-group">
                             <label class="control-label">手机号码：</label>
                             <div class="controls">
-                                <input v-model="will_send_data.phone" onkeyup="value=value.replace(/[^\d]/g,'')" type="text" placeholder="请输入你的手机号" class="input-xfat input-xlarge">
+                                <input style="width: 252px;height: 35px;" v-model="will_send_data.phone" onkeyup="value=value.replace(/[^\d]/g,'')" type="text" placeholder="请输入你的手机号" class="input-xfat input-xlarge">
                             </div>
                         </div>
                         <div class="control-group">
                             <label for="inputPassword" class="control-label">账号：</label>
                             <div class="controls">
-                                <input v-model="will_send_data.username" type="text" placeholder="输入你的登录账号" class="input-xfat input-xlarge">
+                                <input style="width: 252px;height: 35px;" v-model="will_send_data.username" type="text" placeholder="输入你的登录账号" class="input-xfat input-xlarge">
                             </div>
                         </div>
                         <div class="control-group">
                             <label for="inputPassword" class="control-label">登录密码：</label>
                             <div class="controls">
-                                <input v-model="will_send_data.password" type="password" placeholder="设置登录密码" class="input-xfat input-xlarge">
+                                <input style="width: 252px;height: 35px;" v-model="will_send_data.password" type="password" placeholder="设置登录密码" class="input-xfat input-xlarge">
                             </div>
                         </div>
                         <div class="control-group">
                             <label for="inputPassword" class="control-label">确认密码：</label>
                             <div class="controls">
-                                <input v-model="repassword" type="password" placeholder="再次确认密码" class="input-xfat input-xlarge">
+                                <input style="width: 252px;height: 35px;" v-model="repassword" type="password" placeholder="再次确认密码" class="input-xfat input-xlarge">
                             </div>
                         </div>
 
@@ -127,7 +134,7 @@
     </div>
 </body>
 
-<script src=".././js/plugins/jquery/jquery.min.js"></script>
+<!-- <script src=".././js/plugins/jquery/jquery.min.js"></script> -->
 <script src=".././js/api/api.js"></script>
 
 <script>

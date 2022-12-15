@@ -7,7 +7,12 @@ var host = "http://192.168.31.127:8080";
  * @returns 返回后端数据
  */
 async function request(data_settings) {
+    //将本地存储用户信息增加到发送数据包，用于后台需要取用cookies时使用
+    data_settings.data = Object.assign({}, data_settings.data, { user_data: $.zui.store.get('user_info') })
     let data = await $.ajax(data_settings)
+    if (data.result == "not_permission") { //如果没权限弹出登录
+        window.location.href = "/user/login.html";
+    }
     console.log(data)
     return data
 }
@@ -69,6 +74,50 @@ async function api_login(send, callback) {
 async function api_new_hot_shop(send, callback) {
     let settings = {
         "url": host + "/find_shoping/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 添加购物车接口
+ * @param shop_id 商品对应id
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function add_shop_car(send, callback) {
+    let settings = {
+        "url": host + "/add_shop_car/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 查询当前用户所有购物车内容
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function all_shop_car(send, callback) {
+    let settings = {
+        "url": host + "/all_shop_car/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 删除购物车中的一件商品
+ * @param car_id 商品对应id
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function del_shop_car(send, callback) {
+    let settings = {
+        "url": host + "/del_shop_car/",
         "method": "POST",
         "data": send
     }

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>购物车</title>
+
+    <link link rel="stylesheet" type="text/css" href="./shop_list.css">
+
+    <script src="/js/plugins/vue.global.js"></script>
+    <script src="/js/api/api.js"></script>
+
+    <link rel="stylesheet" href="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/css/zui.min.css">
+    <link rel="stylesheet" href="/css/zui-theme.css">
+    <script src="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/lib/jquery/jquery.js"></script>
+    <script src="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/js/zui.min.js"></script>
+
+    <link rel="stylesheet" href="../product_details/details.css">
+    <link rel="stylesheet" href="/admin/admin/shop_list.css">
+    <link rel="stylesheet" href="./shop_car.css">
+</head>
+
+<body>
+
+    <div id="app" class="main_css">
+        <div class="tap">
+
+            <div class="shortcut">
+                <ul class="fl">
+                    <li class="f-item">阿尼尔欢迎您！</li>
+                    <li class="f-item">请<a href="./user/login.html" target="_blank">登录</a>　|&nbsp;&nbsp;<span><a
+                                href="./user/register.html" target="_blank">免费注册</a></span></li>
+                </ul>
+                <div class="fr-list">
+                    <ul class="types">
+                        <li class="f-item"><span>我的订单&nbsp;&nbsp;</span></li>
+                        <li class="f-item">|&nbsp;&nbsp;<span><a href="cart.html"
+                                    target="_blank">我的购物车&nbsp;&nbsp;</a></span></li>
+                        <li class="f-item">|&nbsp;&nbsp;<span> <a
+                                    href="./admin/login/login.html">商家后台&nbsp;&nbsp;</a></span></li>
+                        <li class="f-item"><span>|&nbsp;&nbsp;品牌故事&nbsp;&nbsp;</span></li>
+                        <li class="f-item"><span>|&nbsp;&nbsp;个人中心</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-logo">
+            <div class="nav">
+                <div class="logo">
+                    <img src="/img/UB8F]4149_9WY9669M0_~U9.png" alt="logo">
+                </div>
+                <div class="search">
+                    <div class="input">
+                        <input type="search" class="form-control search-input">
+                    </div>
+                    <button class="btn" type="button">搜索</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="details_list">
+        <div class="internal" style="width: 80%;">
+
+            <!-- 顶部标题部分 -->
+            <div class="shop_list_title">
+                <p class="tile_text">商品名称</p>
+                <p class="tile_text">价格</p>
+                <p class="tile_text">数量</p>
+                <p class="tile_text">操作</p>
+            </div>
+
+            <div v-for="list in shop_list_data " class="shop_for_list">
+                <div class="image_and_title">
+                    <img class="image_css" :src="'http://192.168.31.127:8080/static/image/'+list.myimage"  alt="">
+                    <p class="shop_list_text">{{list.name}}</p>
+                </div>
+
+                <div class="image_and_title">
+                    <p class="shop_list_text" style="margin-left: 33px;">￥ {{list.price}}</p>
+                </div>
+
+                <div class="image_and_title">
+                    <p class="shop_list_text" style="margin-left: 22px;">{{list.num}}</p>
+                </div>
+
+                <div class="image_and_title">
+                    <div class="shop_list_text">
+                        <div class="btn-group">
+                            <button class="btn  btn-primary" :value="list.car_id" @click="remove_shop">删除</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+</body>
+
+<script src="./shop_car.js" type="text/javascript"></script>
+
+</html>
