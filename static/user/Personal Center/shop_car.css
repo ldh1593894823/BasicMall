@@ -4,3 +4,12 @@
     align-items: center;
     width: 100%;
 }
+.buy_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 60px;
+    position: fixed;
+    bottom: 10px;
+}

@@ -65,7 +65,7 @@ def find_shoping(request):
     shop_list = [] #查询到的数据
     find_type = request.POST['find_type']
     if find_type == 'all':  #查询所有商品需要验证cookies 
-        if(tools.valida_cookies(request.POST)) == True:
+        if(tools.valida_cookies(request.POST,'admin')) == True:
             shop_list = models.Shopping.objects.all()
         else:
             respons = {'result': 'not_permission', 'msg': '无权限',}
@@ -74,6 +74,9 @@ def find_shoping(request):
         shop_list = models.Shopping.objects.order_by('-sales')[0:8]
     elif find_type == 'new_shop': #查询前8个上新商品
         shop_list = models.Shopping.objects.order_by('-first_add')[0:8]
+    elif find_type == 'one_shop': #查询一个商品
+        shop_id = request.POST['shop_id']
+        shop_list = models.Shopping.objects.filter(id=shop_id)
     else: 
         respons = {'result': 'error', 'msg': '请求异常'}
         return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
@@ -84,49 +87,58 @@ def find_shoping(request):
     respons = {'result': 'ok', 'msg': '查询成功','shop_list':data_list}
     return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
 
-# 加入购物车接口
-@require_POST
-def add_shop_car(request):
-    if (tools.valida_cookies(request.POST)) != True:
-        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+class Shop_Cart():
+    # 加入购物车接口
+    @require_POST
+    def add_shop_car(request):
+        if (tools.valida_cookies(request.POST,'user')) != True:
+            return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
 
-    shop_id = request.POST['shop_id']
-    add_shop_num = int(request.POST['add_shop_num'])
-    user_phone = request.POST['user_data[login_user]']
-    
-    find_shopcart_obj = models.Shop_cart.objects.filter(user_id=user_phone,shop_id=shop_id)
-    if find_shopcart_obj.count() == 0:
-        models.Shop_cart.objects.create(user_id=user_phone,shop_id=shop_id,shop_num=add_shop_num)
-    elif find_shopcart_obj.count() > 0:
-        find_shopcart_obj.update(shop_num=find_shopcart_obj[0].shop_num + add_shop_num )
+        shop_id = request.POST['shop_id']
+        add_shop_num = int(request.POST['add_shop_num'])
+        user_phone = request.POST['user_data[login_user]']
         
-    respons = {'result': 'ok', 'msg': '添加成功'}
-    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+        find_shopcart_obj = models.Shop_cart.objects.filter(user_id=user_phone,shop_id=shop_id)
+        if find_shopcart_obj.count() == 0:
+            models.Shop_cart.objects.create(user_id=user_phone,shop_id=shop_id,shop_num=add_shop_num)
+        elif find_shopcart_obj.count() > 0:
+            find_shopcart_obj.update(shop_num=find_shopcart_obj[0].shop_num + add_shop_num )
+            
+        respons = {'result': 'ok', 'msg': '添加成功'}
+        return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
 
-#查询所有购物车列表
+    #查询所有购物车列表
+    @require_POST
+    def all_shop_car(request):
+        if (tools.valida_cookies(request.POST,'user')) != True:
+            return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+        
+        user_phone = request.POST['user_data[login_user]']
+        data_list = []
+        
+        find_list =  models.Shop_cart.objects.filter(user_id=user_phone)
+        for i in find_list:
+            shop = Shop_obj.get(id=i.shop_id)
+            data_list.append({"name":shop.name,"myimage":literal_eval(shop.myimage)[0],"price":shop.price,"num":i.shop_num,"car_id":i.id})
+        respons = {'result': 'ok', 'msg': '查询成功',"shop_list":data_list}
+        return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+
+    #删除购物车中的一件商品
+    @require_POST
+    def del_shop_car(request):
+        if (tools.valida_cookies(request.POST,'user')) != True:
+            return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+        
+        shop_id = request.POST['car_id']
+        Shopcar_obj.get(id=shop_id).delete()
+        respons = {'result': 'ok', 'msg': '删除成功'}
+        return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+
+
 @require_POST
-def all_shop_car(request):
-    if (tools.valida_cookies(request.POST)) != True:
+def create_order(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
         return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
     
-    user_phone = request.POST['user_data[login_user]']
-    data_list = []
-    
-    find_list =  models.Shop_cart.objects.filter(user_id=user_phone)
-    for i in find_list:
-        shop = Shop_obj.get(id=i.shop_id)
-        data_list.append({"name":shop.name,"myimage":literal_eval(shop.myimage)[0],"price":shop.price,"num":i.shop_num,"car_id":i.id})
-    respons = {'result': 'ok', 'msg': '查询成功',"shop_list":data_list}
-    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
-
-
-#删除购物车中的一件商品
-@require_POST
-def del_shop_car(request):
-    if (tools.valida_cookies(request.POST)) != True:
-        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
-    
-    shop_id = request.POST['car_id']
-    Shopcar_obj.get(id=shop_id).delete()
-    respons = {'result': 'ok', 'msg': '删除成功'}
-    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})

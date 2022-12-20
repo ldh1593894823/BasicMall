@@ -62,42 +62,46 @@
         </div>
 
         <div class="details_list">
-        <div class="internal" style="width: 80%;">
+            <div class="internal" style="width: 80%;">
 
-            <!-- 顶部标题部分 -->
-            <div class="shop_list_title">
-                <p class="tile_text">商品名称</p>
-                <p class="tile_text">价格</p>
-                <p class="tile_text">数量</p>
-                <p class="tile_text">操作</p>
-            </div>
-
-            <div v-for="list in shop_list_data " class="shop_for_list">
-                <div class="image_and_title">
-                    <img class="image_css" :src="'http://192.168.31.127:8080/static/image/'+list.myimage"  alt="">
-                    <p class="shop_list_text">{{list.name}}</p>
+                <!-- 顶部标题部分 -->
+                <div class="shop_list_title">
+                    <p class="tile_text">商品名称</p>
+                    <p class="tile_text">价格</p>
+                    <p class="tile_text">数量</p>
+                    <p class="tile_text">操作</p>
                 </div>
 
-                <div class="image_and_title">
-                    <p class="shop_list_text" style="margin-left: 33px;">￥ {{list.price}}</p>
-                </div>
+                <div v-for="list in shop_list_data " class="shop_for_list">
+                    <div class="image_and_title">
+                        <img class="image_css" :src="this.host+'/static/image/'+list.myimage" alt="">
+                        <p class="shop_list_text">{{list.name}}</p>
+                    </div>
 
-                <div class="image_and_title">
-                    <p class="shop_list_text" style="margin-left: 22px;">{{list.num}}</p>
-                </div>
+                    <div class="image_and_title">
+                        <p class="shop_list_text" style="margin-left: 33px;">￥ {{list.price}}</p>
+                    </div>
 
-                <div class="image_and_title">
-                    <div class="shop_list_text">
-                        <div class="btn-group">
-                            <button class="btn  btn-primary" :value="list.car_id" @click="remove_shop">删除</button>
+                    <div class="image_and_title">
+                        <p class="shop_list_text" style="margin-left: 22px;">{{list.num}}</p>
+                    </div>
+
+                    <div class="image_and_title">
+                        <div class="shop_list_text">
+                            <div class="btn-group">
+                                <button class="btn  btn-primary" :value="list.car_id" @click="remove_shop">删除</button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
-
         </div>
-    </div>
+
+        <div class="buy_button">
+            <button class="btn btn-primary" style="width: 200px; height: 50px; background-color: rgb(0, 0, 0);" type="button">立即购买</button>
+        </div>
     </div>
 </body>
 
