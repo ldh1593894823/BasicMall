@@ -31,7 +31,7 @@ class Announcement:
     def add_announcement(request):
         _title = request.POST['title']
         _content = request.POST['content']
-        valida_status = tools.valida_cookies(request.POST)
+        valida_status = tools.valida_cookies(request.POST,'admin')
         if(valida_status == False):
             return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
         models.Announcement.objects.create(title=_title,content=_content)
@@ -41,7 +41,7 @@ class Announcement:
     #删除公告接口
     @require_POST
     def del_announcement(request):
-        valida_status = tools.valida_cookies(request.POST)
+        valida_status = tools.valida_cookies(request.POST,'admin')
         if(valida_status == False):
             return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
         models.Announcement.objects.filter(id=request.POST['id']).delete()
@@ -79,7 +79,7 @@ class manage_shop:
     @require_POST
     def del_shop(request):
         shop_id = request.POST['id']
-        valida_status = tools.valida_cookies(request.POST)
+        valida_status = tools.valida_cookies(request.POST,'admin')
         if(valida_status == False):
             return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
         models.Shopping.objects.filter(id=shop_id).delete()

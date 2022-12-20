@@ -29,13 +29,15 @@ urlpatterns = [
     path('find_shoping/', views.find_shoping),    #查询商品
     path('upload/', adminster_valida.upload),     #上传文件
     
+#公告管理
     path('add_announcement/', adminster_valida.Announcement.add_announcement),     #添加公告
     path('all_announcement/', adminster_valida.Announcement.all_announcement),     #所有公告
     path('del_announcement/', adminster_valida.Announcement.del_announcement),     #删除公告
 
-    path('add_shop_car/', views.add_shop_car),    #添加一件商品到购物车
-    path('all_shop_car/', views.all_shop_car),    #查询当前用户所有购物车内容
-    path('del_shop_car/', views.del_shop_car),    #查询当前用户所有购物车内容
+#购物车管理
+    path('add_shop_car/', views.Shop_Cart.add_shop_car),    #添加一件商品到购物车
+    path('all_shop_car/', views.Shop_Cart.all_shop_car),    #查询当前用户所有购物车内容
+    path('del_shop_car/', views.Shop_Cart.del_shop_car),    #查询当前用户所有购物车内容
     
     
 ]

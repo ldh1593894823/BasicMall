@@ -5,6 +5,7 @@ const {
 createApp({
     data() {
         return {
+            host:"",
             hot_shop_list: {},
             new_shop_list: {},
             swiper_data: [{
@@ -27,7 +28,10 @@ createApp({
                 time: 2000
             });
         },
-
+        click_detail(e){
+            console.log(html_host+'/user/product_details/details.html?shop_id='+e.path[2].id)
+            window.open (html_host+'/user/product_details/details.html?shop_id='+e.path[2].id)
+        },
         clicked_shopcar(e){
             console.log(e.target.id)
             add_shop_car({shop_id:e.target.id,add_shop_num:1},res=>{
@@ -38,6 +42,7 @@ createApp({
         }
     },
     mounted: function() {
+        this.host = host
         api_new_hot_shop({ find_type: 'hot_shop' }, res => {
             if (res.result == 'ok') {
                 console.log(res)

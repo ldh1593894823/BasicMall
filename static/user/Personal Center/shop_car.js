@@ -38,7 +38,7 @@ createApp({
         }
     },
     mounted: function() {
-        this.Wrring().show("初始化成功");
+        this.host = host
         this.find_shop_list()
     }
 }).mount('#app')

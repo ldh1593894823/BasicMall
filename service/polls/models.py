@@ -38,5 +38,18 @@ class Shopping(models.Model):
 class Shop_cart(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
     user_id = models.CharField(max_length=64)  #用户手机号
-    shop_num = models.IntegerField(max_length=16) #加购数量
+    shop_num = models.IntegerField() #加购数量
     shop_id = models.CharField(max_length=64)  #商品id
+
+#订单表
+class Order(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
+    user_id = models.CharField(max_length=32)     #用户id
+    first_add=models.DateTimeField(auto_now_add=True) #创建时间
+    price = models.CharField(max_length=16)       #最终价格
+    shop_list = models.CharField(max_length=256)  #商品id列表
+    order_status = models.IntegerField()  #订单状态  1未付款/2待发货/3待收货/0完成订单
+
+    courier_name = models.CharField(max_length=16)  #收货人姓名
+    courier_phone = models.CharField(max_length=16)  #收货人电话
+    courier_place = models.CharField(max_length=64)  #收货人地址
