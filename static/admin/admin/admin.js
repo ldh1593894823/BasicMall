@@ -26,8 +26,7 @@ createApp({
                     name: "订单管理",
                     class_css: "icon-book",
                     son_selector: [
-                        { name: "所有订单", class_css: "icon-circle", is_selected: false, src: "all_order.html" },
-                        { name: "待付款", class_css: "icon-circle", is_selected: false },
+                        { name: "待付款", class_css: "icon-circle", is_selected: false ,src: "no_payment.html" },
                         { name: "待发货", class_css: "icon-circle", is_selected: false },
                         { name: "待收货", class_css: "icon-circle", is_selected: false }
                     ]

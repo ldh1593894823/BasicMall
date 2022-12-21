@@ -37,6 +37,7 @@ createApp({
         }
     },
     mounted: function() {
+        this.host = host
         console.log($.zui.store.get('user_info'))
         this.find_shop_list()
     }

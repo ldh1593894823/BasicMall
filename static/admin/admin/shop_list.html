@@ -38,7 +38,7 @@
 
                 <div v-for="list in shop_list_data " class="shop_for_list">
                     <div class="image_and_title">
-                        <img class="image_css" :src="'http://192.168.31.127:8080/static/image/'+list.myimage[0]"  alt="">
+                        <img class="image_css" :src="this.host+'/static/image/'+list.myimage[0]"  alt="">
                         <p class="shop_list_text">{{list.name}}</p>
                     </div>
 
@@ -57,7 +57,7 @@
                     <div class="image_and_title">
                         <div class="shop_list_text">
                             <div class="btn-group">
-                                <button class="btn  btn-primary">修改</button>
+                                <!-- <button class="btn  btn-primary">修改</button> -->
                                 <button class="btn  btn-primary" :value="list.id" @click="remove_shop">删除</button>
                             </div>
                         </div>

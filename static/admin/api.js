@@ -1,4 +1,5 @@
 var host = "http://127.0.0.1:8080";
+var html_host = "http://127.0.0.1:5500"
 
 /**
  * 封装数据包接口
@@ -122,6 +123,21 @@ async function all_announcement(send, callback) {
 async function del_announcement(send, callback) {
     let settings = {
         "url": host + "/del_announcement/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result, cookies } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 所有订单列表
+ * @param null:
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function all_orders(send, callback) {
+    let settings = {
+        "url": host + "/all_orders/",
         "method": "POST",
         "data": send
     }
