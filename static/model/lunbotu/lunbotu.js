@@ -66,7 +66,7 @@ $(function() {
     }
     //添加新的图片和指示器上的指示
     function show() {
-        console.log(index);
+        // console.log(index);
         $(`.content>ul>li:eq(${index})`).stop().fadeIn();
         // console.log($(`.content>ul>li:eq(${index})`))
         $(`.dot>ul>li:eq(${index})`).addClass('active');

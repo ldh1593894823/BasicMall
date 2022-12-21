@@ -81,7 +81,7 @@ async function api_new_hot_shop(send, callback) {
     let return_data = { msg, result } = await request(settings)
     callback(return_data)
 }
-
+/***********************************************购物车管理接口 *****************************************/
 /**
  * 添加购物车接口
  * @param shop_id 商品对应id
@@ -119,6 +119,23 @@ async function all_shop_car(send, callback) {
 async function del_shop_car(send, callback) {
     let settings = {
         "url": host + "/del_shop_car/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/***********************************************用户订单管理接口 *****************************************/
+
+/**
+ * 删除购物车中的一件商品
+ * @param courier_name,courier_phone,courier_place 收货人信息
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function create_order(send, callback) {
+    let settings = {
+        "url": host + "/create_order/",
         "method": "POST",
         "data": send
     }

@@ -102,3 +102,15 @@ def upload(request):
         f.close()
         respons = {'result': 'ok', 'msg': '上传成功', 'image_name': new_image_name}
     return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+
+#获取所有订单
+@require_POST
+def all_orders(request):
+    if (tools.valida_cookies(request.POST,'admin')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+    order_list = []
+    for i in models.Order.objects.filter(order_status=1):
+        order_list.append({"user_id":i.user_id,"price":i.price,"order_status":i.order_status,"image":i.first_image,"order_time":i.first_add})
+    respons = {'result': 'ok', 'msg': '上传成功', 'order_list': order_list}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})

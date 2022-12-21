@@ -66,58 +66,110 @@
                 <div class="sui-navbar">
                     <div class="navbar-inner">
                         <ul class="sui-nav ">
-                            <li><a>首页</a></li>
-                            <li><a>彩妆</a></li>
-                            <li class="active"><a href="#tab-one" data-toggle="tab">底妆</a></li>
-                            <li><a href="#tab-two" data-toggle="tab">香水</a></li>
-                            <li><a href="#tab-three" data-toggle="tab">品牌故事</a></li>
+                            <li><a :id="1" @click="click_tab" data-toggle="tab">首页</a></li>
+                            <li><a :id="2" @click="click_tab" data-toggle="tab">彩妆</a></li>
+                            <li><a :id="3" @click="click_tab" data-toggle="tab">底妆</a></li>
+                            <li><a :id="4" @click="click_tab" data-toggle="tab">香水</a></li>
+                            <li><a :id="5" @click="click_tab" data-toggle="tab">品牌故事</a></li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="carousel">
-                <!--图片背景-->
-                <div class="content">
-                    <ul v-for="item in swiper_data">
-                        <li>
-                            <img :src="item.image" alt="">
-                        </li>
-                    </ul>
+            <div v-if="now_id == 1">
+                <div class="carousel">
+                    <!--图片背景-->
+                    <div class="content">
+                        <ul v-for="item in swiper_data">
+                            <li>
+                                <img :src="item.image" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                    <!--左移、右移图标-->
+                    <div class="pos">
+                        <a href="" class=" left"><img src="./img/arrow-left.png" alt=""></a>
+                        <a href="" class=" right"><img src="./img/arrow-right.png" alt=""></a>
+                    </div>
+                    <!--指示器-->
+                    <div class="dot">
+                        <ul>
+                            <li class="active">
+                                <a href=""></a>
+                            </li>
+                            <li>
+                                <a href=""></a>
+                            </li>
+                            <li>
+                                <a href=""></a>
+                            </li>
+                            <li>
+                                <a href=""></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <!--左移、右移图标-->
-                <div class="pos">
-                    <a href="" class=" left"><img src="./img/arrow-left.png" alt=""></a>
-                    <a href="" class=" right"><img src="./img/arrow-right.png" alt=""></a>
+
+                <div class="default-list">
+                    <div class="title">
+                        <h1>Must have+</h1>
+                        <h2>热销商品</h2>
+                    </div>
+                    <div class="goods-list">
+                        <ul class="yui3-g" id="goods-list">
+                            <li v-for="list in hot_shop_list" class="yui3-u-1-4">
+                                <div class="list-wrap">
+                                    <div :id="list.id" @click="click_detail">
+                                        <div class="p-img"><img :src="this.host+'/static/image/'+list.myimage[0]"
+                                                alt=''>
+                                        </div>
+                                        <div class="price"><strong><em>¥</em> <i>{{list.price}}</i></strong></div>
+                                        <div class="attr"><em>{{list.name}}</em></div>
+                                    </div>
+                                    <div class="operate">
+                                        <a class="sui-btn btn-bordered btn-danger" :id="list.id"
+                                            @click="clicked_shopcar">加入购物车</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <!--指示器-->
-                <div class="dot">
-                    <ul>
-                        <li class="active">
-                            <a href=""></a>
-                        </li>
-                        <li>
-                            <a href=""></a>
-                        </li>
-                        <li>
-                            <a href=""></a>
-                        </li>
-                        <li>
-                            <a href=""></a>
-                        </li>
-                    </ul>
+
+                <div class="default-list">
+                    <div class="title">
+                        <h1>All Best+</h1>
+                        <h2>产品上新</h2>
+                    </div>
+                    <div class="goods-list">
+                        <ul class="yui3-g" id="goods-list">
+                            <li v-for="list in new_shop_list" class="yui3-u-1-4">
+                                <div class="list-wrap">
+                                    <div :id="list.id" @click="click_detail">
+                                        <div class="p-img"><img :src="this.host+'/static/image/'+list.myimage[0]"
+                                                alt=''>
+                                        </div>
+                                        <div class="price"><strong><em>¥</em> <i>{{list.price}}</i></strong></div>
+                                        <div class="attr"><em>{{list.name}}</em></div>
+                                    </div>
+                                    <div class="operate">
+                                        <a class="sui-btn btn-bordered btn-danger" :id="list.id" :value="list.id"
+                                            @click="clicked_shopcar">加入购物车</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </div>
 
+        <div v-if="now_id == 2 ||now_id == 3|| now_id == 4">
             <div class="default-list">
-                <div class="title">
-                    <h1>Must have+</h1>
-                    <h2>热销商品</h2>
-                </div>
                 <div class="goods-list">
                     <ul class="yui3-g" id="goods-list">
-                        <li v-for="list in hot_shop_list" class="yui3-u-1-4">
+                        <li v-for="list in son_shop_list" class="yui3-u-1-4">
                             <div class="list-wrap">
                                 <div :id="list.id" @click="click_detail">
                                     <div class="p-img"><img :src="this.host+'/static/image/'+list.myimage[0]" alt=''>
@@ -134,32 +186,8 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="default-list">
-                <div class="title">
-                    <h1>All Best+</h1>
-                    <h2>产品上新</h2>
-                </div>
-                <div class="goods-list">
-                    <ul class="yui3-g" id="goods-list">
-                        <li v-for="list in new_shop_list" class="yui3-u-1-4">
-                            <div class="list-wrap">
-                                <div :id="list.id" @click="click_detail">
-                                    <div class="p-img"><img :src="this.host+'/static/image/'+list.myimage[0]" alt=''>
-                                    </div>
-                                    <div class="price"><strong><em>¥</em> <i>{{list.price}}</i></strong></div>
-                                    <div class="attr"><em>{{list.name}}</em></div>
-                                </div>
-                                <div class="operate">
-                                    <a class="sui-btn btn-bordered btn-danger" :id="list.id" :value="list.id"
-                                        @click="clicked_shopcar">加入购物车</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
+        </div>
+    </div>
 </body>
 
 <script src="./index.js"></script>

@@ -77,6 +77,12 @@ def find_shoping(request):
     elif find_type == 'one_shop': #查询一个商品
         shop_id = request.POST['shop_id']
         shop_list = models.Shopping.objects.filter(id=shop_id)
+    elif find_type == 'color': #查询彩妆
+        shop_list = models.Shopping.objects.filter(category='彩妆')
+    elif find_type == 'b_makeup': #查询底妆
+        shop_list = models.Shopping.objects.filter(category='底妆')
+    elif find_type == 'perfume': #查询香水
+        shop_list = models.Shopping.objects.filter(category='香水')
     else: 
         respons = {'result': 'error', 'msg': '请求异常'}
         return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
@@ -136,9 +142,25 @@ class Shop_Cart():
         return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
 
 
-
+#创建订单接口
 @require_POST
 def create_order(request):
     if (tools.valida_cookies(request.POST,'user')) != True:
         return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+    price = 0 ;_shop_list = []
+    courier_name  = request.POST['courier_name']
+    courier_phone = request.POST['courier_phone']
+    courier_place = request.POST['courier_place']
+    login_user = request.POST['user_data[login_user]']
+    first_image = ''
     
+    for index,i in enumerate(models.Shop_cart.objects.filter(user_id=login_user)):
+        shop_info = models.Shopping.objects.get(id=i.shop_id)
+        first_image = print("") if index == 0 else  literal_eval(shop_info.myimage)[0]
+        price = price + (float(i.shop_num)*float(shop_info.price))
+        _shop_list.append(i.shop_id)
+    print(first_image)
+    created = models.Order.objects.create(user_id=login_user,price=price,shop_list=_shop_list,order_status=1,courier_name=courier_name,courier_phone=courier_phone,courier_place=courier_place,first_image=first_image)
+        
+    respons = {'result': 'ok', 'msg': '创建成功',"order_id":created.id}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
