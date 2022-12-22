@@ -44,7 +44,7 @@ urlpatterns = [
 
 #订单管理 普通用户
     path('create_order/', views.create_order),    #新建订单
-    
+    path('order_detail/', views.order_detail),    #新建订单
     
     
 ]

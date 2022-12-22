@@ -129,13 +129,28 @@ async function del_shop_car(send, callback) {
 /***********************************************用户订单管理接口 *****************************************/
 
 /**
- * 删除购物车中的一件商品
+ * 新建订单
  * @param courier_name,courier_phone,courier_place 收货人信息
  * @returns msg:返回信息,result：状态 ok\error
  */
 async function create_order(send, callback) {
     let settings = {
         "url": host + "/create_order/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 查询订单详情
+ * @param order_id 订单编号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function order_detail(send, callback) {
+    let settings = {
+        "url": host + "/order_detail/",
         "method": "POST",
         "data": send
     }
