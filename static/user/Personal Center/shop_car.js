@@ -5,10 +5,11 @@ const {
 createApp({
     data() {
         return {
+            
             shop_list_data: [
                 // { name: "", price: '', num: '', category: '', sales: '', myimage: [] },
             ],
-            create_order_data: { courier_name: "", courier_phone: "", courier_place: "" }
+            create_order_data: { courier_name: "", courier_phone: "", courier_place: "" ,harvest_type:"",}
         }
     },
     methods: {
@@ -46,19 +47,23 @@ createApp({
                 this.Wrring().show("请输入收货人电话")
             } else if ((this.create_order_data.courier_place) == "") {
                 this.Wrring().show("请输入收货人地址")
+            } else if ((this.create_order_data.harvest_type) == "") {
+                this.Wrring().show("请选择收获方式")
             }
             else {
                 create_order(this.create_order_data, res => {
                     if (res.result == 'ok') {
                         $('#myModal').modal('toggle', 'center')
                         this.Wrring().show("下单成功")
+                        window.open(html_host + '/user/Personal%20Center/order_detail.html?shop_id=' + res.order_id)
                         console.log(res.order_id);
                     }
                 })
             }
-
-
-
+        },
+        click_harvest_type(e){
+            console.log(e.target.id);
+            this.create_order_data.harvest_type = e.target.id
         }
     },
     mounted: function () {

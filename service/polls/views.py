@@ -152,15 +152,34 @@ def create_order(request):
     courier_phone = request.POST['courier_phone']
     courier_place = request.POST['courier_place']
     login_user = request.POST['user_data[login_user]']
+    harvest_type = request.POST['harvest_type']
     first_image = ''
     
     for index,i in enumerate(models.Shop_cart.objects.filter(user_id=login_user)):
         shop_info = models.Shopping.objects.get(id=i.shop_id)
         first_image = print("") if index == 0 else  literal_eval(shop_info.myimage)[0]
         price = price + (float(i.shop_num)*float(shop_info.price))
-        _shop_list.append(i.shop_id)
-    print(first_image)
-    created = models.Order.objects.create(user_id=login_user,price=price,shop_list=_shop_list,order_status=1,courier_name=courier_name,courier_phone=courier_phone,courier_place=courier_place,first_image=first_image)
+        _shop_list.append({"id":i.shop_id,"num":i.shop_num})
+
+    created = models.Order.objects.create(user_id=login_user,price=price,shop_list=_shop_list,order_status=1,courier_name=courier_name,
+                                            courier_phone=courier_phone,courier_place=courier_place,first_image=first_image,harvest_type=harvest_type)
         
     respons = {'result': 'ok', 'msg': '创建成功',"order_id":created.id}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+#查询对应订单详情
+@require_POST
+def order_detail(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+    order_id  = request.POST['order_id']
+    _order = models.Order.objects.get(id = order_id)
+    shop_list_id = literal_eval(_order.shop_list)
+    shop_list = []
+
+    for i in shop_list_id:
+        shop_obj = models.Shopping.objects.get(id = i['id'])
+        shop_list.append({"name":shop_obj.name,"price":shop_obj.price,"num":i['num'],"image":literal_eval(shop_obj.myimage)[0]})
+
+    respons = {'result': 'ok', 'msg': '查询成功',"order_detail":{"shop_list":shop_list,"all_price":_order.price}}
     return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
