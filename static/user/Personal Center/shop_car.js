@@ -55,7 +55,7 @@ createApp({
                     if (res.result == 'ok') {
                         $('#myModal').modal('toggle', 'center')
                         this.Wrring().show("下单成功")
-                        window.open(html_host + '/user/Personal%20Center/order_detail.html?shop_id=' + res.order_id)
+                        window.open(html_host + '/user/Personal%20Center/order_list.html?shop_id=' + res.order_id)
                         console.log(res.order_id);
                     }
                 })

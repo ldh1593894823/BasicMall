@@ -1,3 +1,4 @@
+<!-- 待付款页面 -->
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <title>订单详情</title>
+    <title>待付款</title>
 
 
     <script src="/js/plugins/vue.global.js"></script>
@@ -18,11 +19,10 @@
 
     <link rel="stylesheet" href="../product_details/details.css"> <!-- 顶部样式样式 -->
     <link rel="stylesheet" href="/admin/admin/shop_list.css"> <!-- 商品列表样式 -->
-    <link rel="stylesheet" href="./order_detail.css">
+    <link rel="stylesheet" href="./order_list.css">
 </head>
 
 <body>
-
     <div id="app" class="main_css">
         <div class="tap">
 
@@ -71,7 +71,7 @@
                     <p class="tile_text">总价</p>
                 </div>
 
-                <div v-for="list in order_detail.shop_list " class="shop_for_list">
+                <div v-for="list in order_list.shop_list " class="shop_for_list">
                     <div class="image_and_title">
                         <img class="image_css" :src="this.host+'/static/image/'+list.image" alt="">
                         <p class="shop_list_text">{{list.name}}</p>
@@ -101,7 +101,7 @@
 
         <div class="buttom_box">
             <div>
-                <p style="font-size: 28px; font-weight:bold;">总价：{{order_detail.all_price}}元</p>
+                <p style="font-size: 28px; font-weight:bold;">总价：{{order_list.all_price}}元</p>
             </div>
             <div class="buy_button">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" @click="click_buy_now"
@@ -130,7 +130,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="cancel_buy" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" @click="cancel_buy"
+                            data-dismiss="modal">取消</button>
                     </div>
                 </div>
             </div>
@@ -139,6 +140,6 @@
     </div>
 </body>
 
-<script src="./order_detail.js" type="text/javascript"></script>
+<script src="./order_list.js" type="text/javascript"></script>
 
 </html>

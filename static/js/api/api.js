@@ -144,16 +144,32 @@ async function create_order(send, callback) {
 }
 
 /**
- * 查询订单详情
+ * 查询订单详情 订单还未支付的情况下 返回订单内商品列表
  * @param order_id 订单编号
  * @returns msg:返回信息,result：状态 ok\error
  */
-async function order_detail(send, callback) {
+async function order_list(send, callback) {
     let settings = {
-        "url": host + "/order_detail/",
+        "url": host + "/order_list/",
         "method": "POST",
         "data": send
     }
     let return_data = { msg, result } = await request(settings)
     callback(return_data)
 }
+
+/**
+ * 查询订单 1待付款 2待发货 3待收货 4已完成
+ * @param order_id 订单编号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function find_order(send, callback) {
+    let settings = {
+        "url": host + "/find_order/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
