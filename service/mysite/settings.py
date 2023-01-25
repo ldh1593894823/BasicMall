@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-h3*jdnyl7m%c0u6j6dj1+9=+*nc+zh&3^d!e54+tt-=%sdrok_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.31.127', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.31.10', '127.0.0.1']
 
 
 # Application definition
@@ -88,7 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'shooping',
-        'HOST': '221.237.34.242',
+        'HOST': '221.237.34.22',
         'PORT': '3006',
         'USER': 'root',
         'PASSWORD': '123456',

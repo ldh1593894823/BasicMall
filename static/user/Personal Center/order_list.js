@@ -5,7 +5,7 @@ const {
 createApp({
     data() {
         return {
-            order_detail: [],
+            order_list: [],
             timer:{},
             diplay_Messager:{}
         }
@@ -52,8 +52,8 @@ createApp({
             order_id = strs[1];
         }
         console.log(order_id)
-        order_detail({ order_id: order_id }, res => {
-            this.order_detail = res.order_detail
+        order_list({ order_id: order_id }, res => {
+            this.order_list = res.order_list
             console.log(res);
         })
         this.host = host

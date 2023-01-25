@@ -6,6 +6,8 @@ import json
 from ast import literal_eval
 from script import tools ,gittoken
 from django.views.decorators.http import require_POST ,require_GET
+from django.forms.models import model_to_dict
+from django.core import serializers
 # Create your views here.
 
 return_nor_permi = {'result': 'not_permission', 'msg': '无权限',}
@@ -93,6 +95,7 @@ def find_shoping(request):
     respons = {'result': 'ok', 'msg': '查询成功','shop_list':data_list}
     return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
 
+# 购物车管理模块
 class Shop_Cart():
     # 加入购物车接口
     @require_POST
@@ -142,7 +145,7 @@ class Shop_Cart():
         return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
 
 
-#创建订单接口
+#用户创建订单接口
 @require_POST
 def create_order(request):
     if (tools.valida_cookies(request.POST,'user')) != True:
@@ -157,19 +160,20 @@ def create_order(request):
     
     for index,i in enumerate(models.Shop_cart.objects.filter(user_id=login_user)):
         shop_info = models.Shopping.objects.get(id=i.shop_id)
-        first_image = print("") if index == 0 else  literal_eval(shop_info.myimage)[0]
+        if index == 0:
+            first_image = literal_eval(shop_info.myimage)[0]
         price = price + (float(i.shop_num)*float(shop_info.price))
         _shop_list.append({"id":i.shop_id,"num":i.shop_num})
-
+    
     created = models.Order.objects.create(user_id=login_user,price=price,shop_list=_shop_list,order_status=1,courier_name=courier_name,
                                             courier_phone=courier_phone,courier_place=courier_place,first_image=first_image,harvest_type=harvest_type)
         
     respons = {'result': 'ok', 'msg': '创建成功',"order_id":created.id}
     return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
 
-#查询对应订单详情
+#订单创建后还没有支付，查询订单金额
 @require_POST
-def order_detail(request):
+def order_list(request):
     if (tools.valida_cookies(request.POST,'user')) != True:
         return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
     order_id  = request.POST['order_id']
@@ -181,5 +185,22 @@ def order_detail(request):
         shop_obj = models.Shopping.objects.get(id = i['id'])
         shop_list.append({"name":shop_obj.name,"price":shop_obj.price,"num":i['num'],"image":literal_eval(shop_obj.myimage)[0]})
 
-    respons = {'result': 'ok', 'msg': '查询成功',"order_detail":{"shop_list":shop_list,"all_price":_order.price}}
+    respons = {'result': 'ok', 'msg': '查询成功',"order_list":{"shop_list":shop_list,"all_price":_order.price}}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+# 用户查询订单 1待付款 2待发货 3待收货 4已完成
+@require_POST
+def find_order(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+
+    login_user = request.POST['user_data[login_user]'] ##用户id
+    order_status = request.POST['order_status'] ##订单状态
+    order_list = []
+    Queried = models.Order.objects.filter(user_id=login_user,order_status=order_status)
+
+    for i in Queried:
+        order_list.append(model_to_dict(i))
+
+    respons = {'result': 'ok', 'msg': '查询成功',"order_list":order_list}
     return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
