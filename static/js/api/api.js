@@ -1,6 +1,9 @@
 var host = "http://127.0.0.1:8080";
 var html_host = "http://127.0.0.1:5500"
 
+// var host = "http://mickeycat.luncode.com:8080";
+// var html_host = "http://mickeycat.luncode.com:5500"
+
 /**
  * 封装数据包接口
  * @param data_settings 接口url以及数据
@@ -144,7 +147,7 @@ async function create_order(send, callback) {
 }
 
 /**
- * 查询订单详情 订单还未支付的情况下 返回订单内商品列表
+ * 查询未支付订单详情 订单还未支付的情况下 返回订单内商品列表
  * @param order_id 订单编号
  * @returns msg:返回信息,result：状态 ok\error
  */
@@ -159,7 +162,7 @@ async function order_list(send, callback) {
 }
 
 /**
- * 查询订单 1待付款 2待发货 3待收货 4已完成
+ * 查询不同类型订单 1待付款 2待发货 3待收货 4已完成
  * @param order_id 订单编号
  * @returns msg:返回信息,result：状态 ok\error
  */
@@ -173,3 +176,92 @@ async function find_order(send, callback) {
     callback(return_data)
 }
 
+/**
+ * 删除订单接口
+ * @param order_id 订单编号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function del_myorder(send, callback) {
+    let settings = {
+        "url": host + "/del_myorder/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 支付订单
+ * @param order_id 订单编号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function pay_myorder(send, callback) {
+    let settings = {
+        "url": host + "/pay_myorder/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 对订单进行收货处理
+ * @param order_id 订单编号 快递单号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function harvest_myorder(send, callback) {
+    let settings = {
+        "url": host + "/harvest_myorder/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 获取一条公告
+ * @param order_id 订单编号 快递单号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function get_a_announcement(send, callback) {
+    let settings = {
+        "url": host + "/get_a_announcement/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 对订单进行退换货申请
+ * @param order_id 订单编号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function refunds_exchanges(send, callback) {
+    let settings = {
+        "url": host + "/refunds_exchanges/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 普通用户发布评论
+ * @param order_id 订单编号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function add_evaluation(send, callback) {
+    let settings = {
+        "url": host + "/add_evaluation/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}

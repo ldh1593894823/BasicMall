@@ -11,6 +11,14 @@ createApp({
         }
     },
     methods: {
+        click_input(e){
+            modify_shop(e,res=>{
+                console.log(res);
+                if(res.result == 'ok'){
+                    this.Wrring().show("修改成功")
+                }
+            })
+        },
         find_shop_list() {
             api_find_shoping({find_type: 'all'}, res => {
                 if (res.result == 'ok') {

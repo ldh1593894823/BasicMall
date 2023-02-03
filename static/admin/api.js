@@ -1,6 +1,8 @@
 var host = "http://127.0.0.1:8080";
 var html_host = "http://127.0.0.1:5500"
 
+// var host = "http://mickeycat.luncode.com:8080";
+// var html_host = "http://mickeycat.luncode.com:5500"
 /**
  * 封装数据包接口
  * @param data_settings 接口url以及数据
@@ -71,6 +73,22 @@ async function del_shop(send, callback) {
 }
 
 /**
+ * 修改商品
+ * @param type 三种类型 
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function modify_shop(send, callback) {
+    let settings = {
+        "url": host + "/modify_shop/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result, cookies } = await request(settings)
+    callback(return_data)
+}
+
+
+/**
  * 查询所有商品
  * @param type 查询类型 三种/所有(需验证cookies)\热销\上新
  * @returns msg:返回信息,result：状态 ok\error,cookies
@@ -84,6 +102,10 @@ async function api_find_shoping(send, callback) {
     let return_data = { msg, result, cookies } = await request(settings)
     callback(return_data)
 }
+
+
+
+
 
 /**
  * 添加公告
@@ -144,3 +166,80 @@ async function all_orders(send, callback) {
     let return_data = { msg, result, cookies } = await request(settings)
     callback(return_data)
 }
+
+/**
+ * 删除订单接口
+ * @param order_id 订单编号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function admin_del_order(send, callback) {
+    let settings = {
+        "url": host + "/admin_del_order/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 对订单进行发货处理
+ * @param order_id 订单编号 快递单号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function deliver_goods(send, callback) {
+    let settings = {
+        "url": host + "/deliver_goods/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 退换货订单管理
+ * @param order_id 订单编号 快递单号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function modify_order(send, callback) {
+    let settings = {
+        "url": host + "/modify_order/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 查询评论
+ * @param order_id 订单编号 快递单号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function find_evaluationed(send, callback) {
+    let settings = {
+        "url": host + "/find_evaluationed/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 删除评论
+ * @param order_id 订单编号 快递单号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function del_evaluationed(send, callback) {
+    let settings = {
+        "url": host + "/del_evaluationed/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+

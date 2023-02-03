@@ -47,12 +47,10 @@
                                 <a href="/user/Personal Center/shop_car.html" target="_blank">我的购物车&nbsp;&nbsp;</a>
                             </span></li>
                         <li class="f-item">&nbsp;&nbsp;<span> <a
-                                    href="./admin/login/login.html">商家后台&nbsp;&nbsp;</a></span></li>
-                        <li class="f-item"><span>&nbsp;&nbsp;个人中心</span></li>
+                                    href="/admin/admin/admin.html">商家后台&nbsp;&nbsp;</a></span></li>
                     </ul>
                 </div>
             </div>
-
         </div>
 
         <div class="nav-logo">
@@ -60,7 +58,11 @@
                 <div class="logo">
                     <img src="/img//Logo.png" alt="logo">
                 </div>
+                <div style="margin-left: 1200px;">
+                    {{announcement_list}}
+                </div>
             </div>
+
         </div>
 
         <div class="py-container shop">
@@ -68,11 +70,11 @@
                 <div class="sui-navbar">
                     <div class="navbar-inner">
                         <ul class="sui-nav ">
-                            <li><a :id="1" @click="click_tab" data-toggle="tab">首页</a></li>
-                            <li><a :id="2" @click="click_tab" data-toggle="tab">彩妆</a></li>
-                            <li><a :id="3" @click="click_tab" data-toggle="tab">底妆</a></li>
-                            <li><a :id="4" @click="click_tab" data-toggle="tab">香水</a></li>
-                            <li><a :id="5" @click="click_tab" data-toggle="tab">品牌故事</a></li>
+                            <li><a @click="click_tab(1)" data-toggle="tab">首页</a></li>
+                            <li><a @click="click_tab(2)" data-toggle="tab">彩妆</a></li>
+                            <li><a @click="click_tab(3)" data-toggle="tab">底妆</a></li>
+                            <li><a @click="click_tab(4)" data-toggle="tab">香水</a></li>
+                            <li><a @click="click_tab(5)" data-toggle="tab">品牌故事</a></li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -106,9 +108,6 @@
                             <li>
                                 <a href=""></a>
                             </li>
-                            <li>
-                                <a href=""></a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -122,7 +121,7 @@
                         <ul class="yui3-g" id="goods-list">
                             <li v-for="list in hot_shop_list" class="yui3-u-1-4">
                                 <div class="list-wrap">
-                                    <div :id="list.id" @click="click_detail">
+                                    <div @click="click_detail(list.id)">
                                         <div class="p-img"><img :src="this.host+'/static/image/'+list.myimage[0]"
                                                 alt=''>
                                         </div>
@@ -148,7 +147,7 @@
                         <ul class="yui3-g" id="goods-list">
                             <li v-for="list in new_shop_list" class="yui3-u-1-4">
                                 <div class="list-wrap">
-                                    <div :id="list.id" @click="click_detail">
+                                    <div :id="list.id" @click="click_detail(list.id)">
                                         <div class="p-img"><img :src="this.host+'/static/image/'+list.myimage[0]"
                                                 alt=''>
                                         </div>
@@ -173,7 +172,7 @@
                     <ul class="yui3-g" id="goods-list">
                         <li v-for="list in son_shop_list" class="yui3-u-1-4">
                             <div class="list-wrap">
-                                <div :id="list.id" @click="click_detail">
+                                <div :id="list.id" @click="click_detail(list.id)">
                                     <div class="p-img"><img :src="this.host+'/static/image/'+list.myimage[0]" alt=''>
                                     </div>
                                     <div class="price"><strong><em>¥</em> <i>{{list.price}}</i></strong></div>
@@ -189,6 +188,18 @@
                 </div>
             </div>
         </div>
+
+        <div v-if="now_id == 5"
+            style=" background-color: rgba(245, 245, 245, 0.63);margin-left: 600px;margin-top: 100px;height: 400px;width: 800px; border-radius: 1rem;">
+            <div style="display: flex;align-items: flex-start;justify-content: space-between;flex-direction: column;">
+                <div style="font-size: 40px;font-weight: 800;">关于阿尼尔</div>
+                <div style="width: 1200px;width: 800px;font-size: 20px;margin-top: 50px;">
+                    阿尼尔是来自法国化妆品品牌，是一个定位于即可服务前店后院又能满足美容院经营模式、具备优良品质、安全性能高的中档护肤品品牌。自2010年进入中国市场，短短三年时间，网络已经覆盖中华大地，并获得了良好的评价，得到了上万消费者的高度喜爱。其产品分为彩妆系列、底妆系列和香水系列三大块。其中彩妆系列主要包括：口红、唇釉、眼影等；底妆系列主要包括：防晒、隔离、粉底液等；香水系列主要包括女士香水、男士香水等。阿尼尔品牌已经得到众多化妆品行家的认可。
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </body>
 

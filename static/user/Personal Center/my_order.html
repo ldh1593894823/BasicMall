@@ -35,13 +35,14 @@
                 </ul>
                 <div class="fr-list">
                     <ul class="types">
-                        <li class="f-item"><span>我的订单&nbsp;&nbsp;</span></li>
-                        <li class="f-item">|&nbsp;&nbsp;<span><a href="cart.html"
-                                    target="_blank">我的购物车&nbsp;&nbsp;</a></span></li>
-                        <li class="f-item">|&nbsp;&nbsp;<span> <a
-                                    href="./admin/login/login.html">商家后台&nbsp;&nbsp;</a></span></li>
-                        <li class="f-item"><span>|&nbsp;&nbsp;品牌故事&nbsp;&nbsp;</span></li>
-                        <li class="f-item"><span>|&nbsp;&nbsp;个人中心</span></li>
+                        <li class="f-item"><span><a href="/user/Personal Center/my_order.html"
+                            target="_blank">我的订单</a></span></li>
+                        <li class="f-item">|&nbsp;&nbsp;<span>
+                                <a href="/user/Personal Center/shop_car.html" target="_blank">我的购物车&nbsp;&nbsp;
+                                </a></span></li>
+                        <li class="f-item">|&nbsp;&nbsp;<span>
+                                <a href="/admin/admin/admin.html">商家后台&nbsp;&nbsp;
+                                </a></span></li>
                     </ul>
                 </div>
             </div>
@@ -49,9 +50,9 @@
 
         <div class="nav-logo">
             <div class="nav">
-                <div class="logo">
+                <a href="/index.html" class="logo">
                     <img src="/img/UB8F]4149_9WY9669M0_~U9.png" alt="logo">
-                </div>
+                </a>
                 <div class="search">
                     <div class="input">
                         <input type="search" class="form-control search-input">
@@ -63,10 +64,15 @@
 
         <div class="buttom_list">
             <div class="btn-group">
-                <button class="btn btn-primary">待付款</button>
-                <button class="btn btn-primary">待发货</button>
-                <button class="btn btn-primary">待收货</button>
-                <button class="btn btn-primary">已完成</button>
+                <button class="btn btn-primary" @click="find_shop_list(1)">待付款</button>
+                <button class="btn btn-primary" @click="find_shop_list(2)">待发货</button>
+                <button class="btn btn-primary" @click="find_shop_list(3)">待收货</button>
+                <button class="btn btn-primary" @click="find_shop_list(0)">收货成功</button>
+
+                <button class="btn btn-primary" @click="find_shop_list(4)">退货审核</button>
+                <button class="btn btn-primary" @click="find_shop_list(6)">换货审核</button>
+                <button class="btn btn-primary" @click="find_shop_list(5)">退货成功</button>
+                <button class="btn btn-primary" @click="find_shop_list(7)">换货成功</button>
             </div>
         </div>
         <div class="details_list">
@@ -74,17 +80,18 @@
 
                 <!-- 顶部标题部分 -->
                 <div class="shop_list_title">
-                    <p class="tile_text">商品名称</p>
+                    <p class="tile_text">收货类型</p>
                     <p class="tile_text">商品价格</p>
-                    <p class="tile_text">创建时间</p>
+                    <p v-if="this.select_state != 0" class="tile_text">创建时间</p>
+                    <p v-if="this.select_state == 0" class="tile_text">评价内容</p>
                     <p class="tile_text">操作</p>
                 </div>
 
                 <!-- 商品列表部分 -->
-                <div v-for="list in shop_list_data " class="shop_for_list">
+                <div v-for="(list,index) in shop_list_data " class="shop_for_list">
                     <div class="image_and_title">
                         <img class="image_css" :src="this.host+'/static/image/'+list.first_image" alt="">
-                        <p class="shop_list_text">{{list.name}}</p>
+                        <p class="shop_list_text">{{list.harvest_type}}</p>
                     </div>
 
                     <div class="image_and_title">
@@ -92,13 +99,33 @@
                     </div>
 
                     <div class="image_and_title">
-                        <p class="shop_list_text" style="margin-left: 22px;">{{list.time}}</p>
+                        <p v-if="this.select_state !=0 " class="shop_list_text" style="margin-left: 22px;">
+                            {{list.first_add}}</p>
+                        <div v-if="this.select_state==0" class="input-control has-label-left">
+                            <input v-model="this.shop_list_data[index].evaluation" id="inputAccountExample2"
+                                class="form-control" placeholder="" />
+                            <label for="inputAccountExample2" class="input-control-label-left">评价：</label>
+                        </div>
+                        <button v-if="this.select_state==0" class="btn  btn-primary"
+                            @click="click_add_evaluation({id:list.id,'index':index})">发布</button>
                     </div>
 
                     <div class="image_and_title">
                         <div class="shop_list_text">
-                            <div class="btn-group">
-                                <button class="btn  btn-primary" :value="list.car_id" @click="remove_shop">删除</button>
+                            <div v-if="this.select_state==1" class="btn-group">
+                                <button class="btn  btn-primary" @click="remove_shop(list.id)">删除</button>
+                                <button class="btn  btn-primary" @click="pay_shop(list.id)">付款</button>
+                            </div>
+
+                            <div v-if="this.select_state==3" class="btn-group">
+                                <button class="btn  btn-primary" @click="set_order(list.id)">收货</button>
+                            </div>
+
+                            <div v-if="this.select_state==0" class="btn-group">
+                                <button class="btn  btn-primary"
+                                    @click="click_refunds_exchanges({order_id:list.id,return_type:'return'})">退货</button>
+                                <button class="btn  btn-primary"
+                                    @click="click_refunds_exchanges({order_id:list.id,return_type:'exchanges'})">换货</button>
                             </div>
                         </div>
                     </div>

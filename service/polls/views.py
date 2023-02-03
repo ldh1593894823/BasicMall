@@ -195,12 +195,97 @@ def find_order(request):
         return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
 
     login_user = request.POST['user_data[login_user]'] ##用户id
-    order_status = request.POST['order_status'] ##订单状态
+    order_status = request.POST['order_status']        ##订单状态
     order_list = []
     Queried = models.Order.objects.filter(user_id=login_user,order_status=order_status)
 
     for i in Queried:
-        order_list.append(model_to_dict(i))
-
+        dict_data = model_to_dict(i,fields=['first_image', 'harvest_type','price','first_add','harvest_type','evaluation'])
+        dict_data['first_add'] = str(i.first_add)
+        dict_data['id'] = str(i.id)
+        order_list.append(dict_data)
     respons = {'result': 'ok', 'msg': '查询成功',"order_list":order_list}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+# #用户删除订单接口
+@require_POST
+def del_myorder(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+    
+    order_id  = request.POST['order_id']
+    models.Order.objects.get(id=order_id).delete()
+    respons = {'result': 'ok', 'msg': '删除成功'}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+#用户付款成功接口
+@require_POST
+def pay_myorder(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+    
+    order_id  = request.POST['order_id']
+    models.Order.objects.filter(id=order_id).update(order_status=2)
+    respons = {'result': 'ok', 'msg': '支付成功'}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+
+#用户确认收货
+@require_POST
+def harvest_myorder(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+    
+    order_id  = request.POST['order_id']
+    models.Order.objects.filter(id=order_id).update(order_status=0)
+    respons = {'result': 'ok', 'msg': '收货成功'}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+#获取一条公告
+@require_POST
+def get_a_announcement(request):
+    announcement = models.Announcement.objects.get().content
+    respons = {'result': 'ok', 'msg': '获取成功','content':announcement}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+#用户申请退换货
+#/4申请退货/5退货成功  /6申请换货/7换货成功
+@require_POST
+def refunds_exchanges(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+
+    order_id  = request.POST['order_id']
+    return_type = request.POST['return_type']
+    print(order_id)
+
+    try:
+        find_obj = models.Order.objects.filter(id=order_id,order_status=0)
+        if(find_obj.count() == 0):
+            respons = {'result': 'error', 'msg': '请求异常'}
+        elif(return_type == "return"):
+            find_obj.update(order_status=4)
+            respons = {'result': 'ok', 'msg': '退货审核中'}
+        elif(return_type == "exchanges"):
+            find_obj.update(order_status=6)
+            respons = {'result': 'ok', 'msg': '换货审核中'}
+            
+    except:
+        respons = {'result': 'error', 'msg': '异常'}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+
+@require_POST
+def add_evaluation(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+    order_id  = request.POST['order_id']
+    detail = request.POST['detail']
+
+    order_obj = models.Order.objects.filter(id=order_id)
+    if(len(order_obj[0].evaluation) == 0):
+        order_obj.update(evaluation=detail)
+        respons = {'result': 'ok', 'msg': '发布成功'}
+    else:
+        respons = {'result': 'error', 'msg': '异常'}
     return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
