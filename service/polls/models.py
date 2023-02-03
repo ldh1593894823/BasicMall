@@ -48,11 +48,12 @@ class Order(models.Model):
     first_add=models.DateTimeField(auto_now_add=True) #创建时间
     price = models.CharField(max_length=16)           #最终价格
     shop_list = models.CharField(max_length=512)      #商品id列表
-    order_status = models.IntegerField()              #订单状态  1待付款/2待发货/3待收货/0完成订单
+    order_status = models.IntegerField()              #订单状态  1待付款/2待发货/3待收货/0完成订单  /4申请退货/5退货成功  /6申请换货/7换货成功
     first_image = models.CharField(max_length=128)    #第一张商品图片
     harvest_type = models.CharField(max_length=16)    #订单派送类型
     express_id = models.CharField(max_length=64)      #快递单号
 
+    evaluation = models.CharField(max_length=64)      #订单评价
     courier_name = models.CharField(max_length=16)    #收货人姓名
     courier_phone = models.CharField(max_length=16)   #收货人电话
     courier_place = models.CharField(max_length=64)   #收货人地址

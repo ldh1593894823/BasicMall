@@ -23,14 +23,27 @@ urlpatterns = [
     path('login/', views.login),                #普通用户登录
     path('login_admin/', adminster_valida.login_admin), #超级管理员登录
 
-    path('add_shop/', adminster_valida.manage_shop.add_shop), #添加商品
-    path('del_shop/', adminster_valida.manage_shop.del_shop), #删除商品
-
+#公共接口据
     path('find_shoping/', views.find_shoping),    #查询商品
     path('upload/', adminster_valida.upload),     #上传文件
-    
-    path('all_orders/', adminster_valida.all_orders),     #所有订单列表
+    path('get_a_announcement/', views.get_a_announcement),     #上传文件
 
+#管理员管理商品接口
+    path('add_shop/', adminster_valida.manage_shop.add_shop), #添加商品
+    path('del_shop/', adminster_valida.manage_shop.del_shop), #删除商品
+    path('modify_shop/', adminster_valida.manage_shop.modify_shop), #修改商品
+    
+
+#管理员管理订单接口
+    path('all_orders/',      adminster_valida.manage_order.all_orders),               #所有订单列表
+    path('admin_del_order/', adminster_valida.manage_order.admin_del_order),     #删除订单接口
+    path('deliver_goods/',   adminster_valida.manage_order.deliver_goods),         #发货接口
+    path('modify_order/',   adminster_valida.manage_order.modify_order),         #订单退换货审核
+
+    path('find_evaluationed/',   adminster_valida.find_evaluationed),         #查询评论
+    path('del_evaluationed/',   adminster_valida.del_evaluationed),         #删除评论
+
+    
 
 #公告管理 管理员
     path('add_announcement/', adminster_valida.Announcement.add_announcement),     #添加公告
@@ -46,5 +59,15 @@ urlpatterns = [
     path('create_order/', views.create_order),    #新建订单
     path('order_list/', views.order_list),    #新建订单
     path('find_order/', views.find_order),    #新建订单
+    path('del_myorder/', views.del_myorder),    #删除未付款订单
+    path('pay_myorder/', views.pay_myorder),    #订单付款成功
+    path('harvest_myorder/', views.harvest_myorder),    #订单收货操作
+
+#普通用户 退换货申请
+    path('refunds_exchanges/', views.refunds_exchanges),    #订单收货操作
+
+#普通用户 发布评论
+    path('add_evaluation/', views.add_evaluation),    #订单收货操作
     
+
 ]

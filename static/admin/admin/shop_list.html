@@ -36,22 +36,22 @@
                     <p class="tile_text">操作</p>
                 </div>
 
-                <div v-for="list in shop_list_data " class="shop_for_list">
+                <div v-for="(list,item) in shop_list_data " class="shop_for_list">
                     <div class="image_and_title">
                         <img class="image_css" :src="this.host+'/static/image/'+list.myimage[0]"  alt="">
                         <p class="shop_list_text">{{list.name}}</p>
                     </div>
 
                     <div class="image_and_title">
-                        <p class="shop_list_text" style="margin-left: 33px;">￥ {{list.price}}</p>
+                        <input type="number" class="input_box" @blur="click_input({detail_title:'price',detail:shop_list_data[item].price,id:list.id})" class="shop_list_text" style="margin-left: 33px;" v-model="shop_list_data[item].price" ></input>
                     </div>
 
                     <div class="image_and_title">
-                        <p class="shop_list_text" style="margin-left: 22px;">{{list.sales}}</p>
+                        <input type="number" class="input_box" @blur="click_input({detail_title:'sales',detail:shop_list_data[item].sales,id:list.id})" class="shop_list_text" style="margin-left: 33px;" v-model="shop_list_data[item].sales" ></input>
                     </div>
 
                     <div class="image_and_title">
-                        <p class="shop_list_text" style="margin-left: 22px;">{{list.num}}</p>
+                        <input type="number" class="input_box" @blur="click_input({detail_title:'num',detail:shop_list_data[item].num,id:list.id})" class="shop_list_text" style="margin-left: 33px;" v-model="shop_list_data[item].num" ></input>
                     </div>
 
                     <div class="image_and_title">
@@ -61,18 +61,10 @@
                                 <button class="btn  btn-primary" :value="list.id" @click="remove_shop">删除</button>
                             </div>
                         </div>
-                    </div>
-
+                    </div
                 </div>
-
-
-
-
             </div>
-
         </div>
-
-
     </div>
 </body>
 

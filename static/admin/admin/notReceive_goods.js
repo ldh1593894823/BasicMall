@@ -20,7 +20,7 @@ createApp({
             });
         },
         find_order_list() {
-            all_orders({order_status:1}, res => {
+            all_orders({order_status:3}, res => {
                 if (res.result == 'ok') {
                     this.shop_order_data = res.order_list
                     console.log('商品列表', res)

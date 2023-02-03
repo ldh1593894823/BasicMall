@@ -56,11 +56,10 @@ ul.fl {
 }
 .nav {
   height: 105px;
-  width: 83%;
+  width: 85%;
   display: flex;
   align-items: center;
   flex-direction: row;
-  /* background-color: aqua; */
 }
 .search {
   display: flex;

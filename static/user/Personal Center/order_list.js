@@ -5,6 +5,7 @@ const {
 createApp({
     data() {
         return {
+            order_id:'',
             order_list: [],
             timer:{},
             diplay_Messager:{}
@@ -29,8 +30,15 @@ createApp({
         },
         click_buy_now() {
             this.timer = setTimeout(() => {
-                this.Wrring().show("支付成功")
-                this.diplay_Messager.modal('hide')
+                pay_myorder({order_id:this.order_id},res=>{
+                    if(res.result=="ok"){
+                        this.Wrring().show("支付成功")
+                        this.diplay_Messager.modal('hide')
+                        setTimeout(() => {
+                            window.location.href="/index.html"
+                        }, 1000);
+                    }
+                })
             }, 3000)
         },
         cancel_buy(){
@@ -52,9 +60,9 @@ createApp({
             order_id = strs[1];
         }
         console.log(order_id)
+        this.order_id = order_id
         order_list({ order_id: order_id }, res => {
             this.order_list = res.order_list
-            console.log(res);
         })
         this.host = host
     }

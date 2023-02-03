@@ -3,14 +3,14 @@
     align-items: center;
     flex-direction: column;
     min-width: 1200px;
-    height: auto;
+    height: 100vh;
     width: 100%;
     background-color: rgba(248, 248, 248, 0.952);
 }
 
 .main_content {
     width: 80%;
-    height: auto;
+    height: 800px;
     margin-top: 40px;
     background-color: rgb(255, 255, 255);
     border-radius: 16px;
@@ -23,7 +23,6 @@
 .internal {
     height: calc(100% - 60px);
     width: calc(100% - 60px);
-    margin-bottom: 30px;
 }
 
 .shop_list_title {
@@ -35,7 +34,6 @@
     height: 40px;
     background-color: rgba(233, 233, 233, 0.767);
     border-radius: 3px;
-    margin-top: 30px;
 }
 
 .shop_for_list {
@@ -45,9 +43,6 @@
 }
 
 .image_and_title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-top: 10px;
     display: flex;
     flex-direction: row;
@@ -67,10 +62,4 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-}
-
-.input_box{
-    width: 90px;
-    height: 20px;
-    border: none;
 }

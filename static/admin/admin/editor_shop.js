@@ -54,7 +54,7 @@ createApp({
             chunk_size: 0, //关闭分片上传
             autoUpload: false, //自动上传关闭
             limitFilesCount: 5, //限制上传数量
-            url: 'http://127.0.0.1:8080/upload/',
+            url: 'http://mickeycat.luncode.com:8080/upload/',  
             renameByClick: true, //重命名图片名称
             unique_names: true, //开启随机名称
 
