@@ -265,3 +265,33 @@ async function add_evaluation(send, callback) {
     let return_data = { msg, result } = await request(settings)
     callback(return_data)
 }
+
+/**
+ * 获取用户个人信息
+ * @param order_id 订单编号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function get_userinfo(send, callback) {
+    let settings = {
+        "url": host + "/get_userinfo/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 获取用户个人信息
+ * @param order_id 订单编号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function modify_userinfo(send, callback) {
+    let settings = {
+        "url": host + "/modify_userinfo/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}

@@ -69,5 +69,9 @@ urlpatterns = [
 #普通用户 发布评论
     path('add_evaluation/', views.add_evaluation),    #订单收货操作
     
+#普通用户个人信息管理
 
+    path('get_userinfo/', views.get_userinfo),    #获取个人信息
+    path('modify_userinfo/', views.modify_userinfo),    #修改个人信息
+    
 ]

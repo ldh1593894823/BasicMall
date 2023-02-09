@@ -23,6 +23,10 @@ class User(models.Model):
     userphone = models.CharField(max_length=32)  # 手机号登录用
     user_qq = models.CharField(max_length=32)  # 用户qq号码
 
+    user_gender = models.CharField(max_length=4)  # 用户性别
+    contact_number = models.CharField(max_length=8)  # 联系电话
+    delivery_address = models.CharField(max_length=8)  # 收货地址
+
 # 商品列表
 class Shopping(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)

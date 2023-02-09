@@ -1,0 +1,115 @@
+<!-- 购物车页面 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>我的订单</title>
+
+
+    <script src="/js/plugins/vue.global.js"></script>
+    <script src="/js/api/api.js"></script>
+
+    <link rel="stylesheet" href="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/css/zui.min.css">
+    <link rel="stylesheet" href="/css/zui-theme.css">
+    <script src="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/lib/jquery/jquery.js"></script>
+    <script src="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/js/zui.min.js"></script>
+
+    <link rel="stylesheet" href="../product_details/details.css">
+    <link rel="stylesheet" href="/admin/admin/shop_list.css">
+    <link rel="stylesheet" href="./my_info.css">
+</head>
+
+<body>
+
+    <div id="app" class="main_css">
+        <div class="tap">
+
+            <div class="shortcut">
+                <ul class="fl">
+                    <li class="f-item">阿尼尔欢迎您！</li>
+                    <li class="f-item">请<a href="./user/login.html" target="_blank">登录</a>　|&nbsp;&nbsp;<span><a
+                                href="./user/register.html" target="_blank">免费注册</a></span></li>
+                </ul>
+                <div class="fr-list">
+                    <ul class="types">
+                        <li class="f-item"><span><a href="/user/Personal Center/my_order.html"
+                                    target="_blank">我的订单</a></span></li>
+                        <li class="f-item">|&nbsp;&nbsp;<span>
+                        <li class="f-item"><span><a href="/user/Personal Center/my_info.html"
+                                    target="_blank">个人信息</a></span></li>
+                        <li class="f-item">|&nbsp;&nbsp;<span>
+                                <a href="/user/Personal Center/shop_car.html" target="_blank">我的购物车&nbsp;&nbsp;
+                                </a></span></li>
+                        <li class="f-item">|&nbsp;&nbsp;<span>
+                                <a href="/admin/admin/admin.html">商家后台&nbsp;&nbsp;
+                                </a></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-logo">
+            <div class="nav">
+                <a href="/index.html" class="logo">
+                    <img src="/img/UB8F]4149_9WY9669M0_~U9.png" alt="logo">
+                </a>
+                <div class="search">
+                    <div class="input">
+                        <input type="search" class="form-control search-input">
+                    </div>
+                    <button class="btn" type="button">搜索</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail_main">
+
+            <div class="user_info">
+                <div class="imput_box">
+                    <p style="font-size: 25px; font-weight: 800;">个人信息</p>
+                    <div class="input-control has-icon-left">
+                        <input v-model="user_info.username" id="inputAccountExample1" type="text" class="form-control" placeholder="用户名">
+                        <label for="inputAccountExample1" class="input-control-icon-left"><i
+                                class="icon icon-user "></i></label>
+                    </div>
+
+                    <div class="input-control has-icon-left">
+                        <input v-model="user_info.user_qq" id="inputAccountExample1" type="text" class="form-control" placeholder="QQ号码">
+                        <label for="inputAccountExample1" class="input-control-icon-left"><i
+                                class="icon icon-user "></i></label>
+                    </div>
+
+                    <div class="input-control has-icon-left">
+                        <input v-model="user_info.user_gender" id="inputAccountExample1" type="text" class="form-control" placeholder="性别">
+                        <label for="inputAccountExample1" class="input-control-icon-left"><i
+                                class="icon icon-user "></i></label>
+                    </div>
+
+                    <div class="input-control has-icon-left">
+                        <input v-model="user_info.contact_number" id="inputAccountExample1" type="text" class="form-control" placeholder="联系电话">
+                        <label for="inputAccountExample1" class="input-control-icon-left"><i
+                                class="icon icon-user "></i></label>
+                    </div>
+
+                    <div class="input-control has-icon-left">
+                        <input v-model="user_info.delivery_address" id="inputAccountExample1" type="text" class="form-control" placeholder="收货地址">
+                        <label for="inputAccountExample1" class="input-control-icon-left"><i
+                                class="icon icon-user "></i></label>
+                    </div>
+
+                    <button style="width: 100%; margin-top: 20px;" class="btn btn-primary" @click="modify_info" type="button">保存</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+<script src="./my_info.js" type="text/javascript"></script>
+
+</html>
