@@ -289,3 +289,35 @@ def add_evaluation(request):
     else:
         respons = {'result': 'error', 'msg': '异常'}
     return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+#获取用户个人信息
+@require_POST
+def get_userinfo(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+    
+    login_user = request.POST['user_data[login_user]']
+    find_info = models.User.objects.get(userphone=login_user)
+    user_info = model_to_dict(find_info,fields=['username','user_qq','user_gender','contact_number','delivery_address'])
+    print(find_info.username)
+    respons = {'result': 'ok', 'msg': '获取成功','user_info':user_info}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+#修改个人信息
+@require_POST
+def modify_userinfo(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+
+    username = request.POST['user_info[username]']
+    user_qq= request.POST['user_info[user_qq]'] 
+    user_gender= request.POST['user_info[user_gender]'] 
+    contact_number= request.POST['user_info[contact_number]'] 
+    delivery_address= request.POST['user_info[delivery_address]']  
+    login_user = request.POST['user_data[login_user]'] 
+    
+    models.User.objects.filter(userphone=login_user).update(username=username,user_qq=user_qq,user_gender=user_gender,contact_number=contact_number,delivery_address=delivery_address)
+    respons = {'result': 'ok', 'msg': '修改成功'}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+    

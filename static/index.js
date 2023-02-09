@@ -17,6 +17,8 @@ createApp({
                 image: "/img/index2.jpg"
             }, {
                 image: "/img/index3.jpg"
+            }, {
+                image: "/img/index4.jpg"
             }],
         }
     },

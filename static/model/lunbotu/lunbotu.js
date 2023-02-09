@@ -18,7 +18,7 @@ $(function() {
             btn = true;
             clean();
             if (index == 0) {
-                index = 2;
+                index = 3;
             } else {
                 --index;
             }
@@ -28,7 +28,7 @@ $(function() {
     $('.right').on('click', function() {
             btn = true;
             clean();
-            if (index == 2) {
+            if (index == 3) {
                 index = 0;
             } else {
                 ++index;
@@ -49,7 +49,7 @@ $(function() {
     setInterval(function() {
             if (!btn) {
                 clean();
-                if (index == 2) {
+                if (index == 3) {
                     index = 0;
                 } else {
                     ++index;

@@ -21,7 +21,7 @@ a {
     margin: 40px auto;
     width: 1550px;
     height: 500px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    /* border: 1px solid rgba(0, 0, 0, 0.1); */
     box-sizing: border-box;
     /*超出部分隐藏*/
     overflow: hidden;
