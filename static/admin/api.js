@@ -1,8 +1,8 @@
-var host = "http://127.0.0.1:8080";
-var html_host = "http://127.0.0.1:5500"
+// var host = "http://127.0.0.1:8080";
+// var html_host = "http://127.0.0.1:5500"
 
-// var host = "http://mickeycat.luncode.com:8080";
-// var html_host = "http://mickeycat.luncode.com:5500"
+var host = "http://mickeycat.luncode.com:7080";
+var html_host = "http://mickeycat.luncode.com:7001"
 /**
  * 封装数据包接口
  * @param data_settings 接口url以及数据

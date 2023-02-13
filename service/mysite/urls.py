@@ -43,7 +43,6 @@ urlpatterns = [
     path('find_evaluationed/',   adminster_valida.find_evaluationed),         #查询评论
     path('del_evaluationed/',   adminster_valida.del_evaluationed),         #删除评论
 
-    
 
 #公告管理 管理员
     path('add_announcement/', adminster_valida.Announcement.add_announcement),     #添加公告
@@ -65,12 +64,13 @@ urlpatterns = [
 
 #普通用户 退换货申请
     path('refunds_exchanges/', views.refunds_exchanges),    #订单收货操作
+    path('cancel_refunds/', views.cancel_refunds),    #用户取消退货
+    path('cancel_exchanges/', views.cancel_exchanges),    #用户取消换货
 
 #普通用户 发布评论
     path('add_evaluation/', views.add_evaluation),    #订单收货操作
     
 #普通用户个人信息管理
-
     path('get_userinfo/', views.get_userinfo),    #获取个人信息
     path('modify_userinfo/', views.modify_userinfo),    #修改个人信息
     

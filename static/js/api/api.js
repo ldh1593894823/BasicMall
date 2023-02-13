@@ -1,9 +1,8 @@
-var host = "http://127.0.0.1:8080";
-var html_host = "http://127.0.0.1:5500"
+// var host = "http://127.0.0.1:8080";
+// var html_host = "http://127.0.0.1:5500"
 
-// var host = "http://mickeycat.luncode.com:8080";
-// var html_host = "http://mickeycat.luncode.com:5500"
-
+var host = "http://mickeycat.luncode.com:7080";
+var html_host = "http://mickeycat.luncode.com:7001"
 /**
  * 封装数据包接口
  * @param data_settings 接口url以及数据
@@ -222,6 +221,36 @@ async function harvest_myorder(send, callback) {
 }
 
 /**
+ * 取消换货
+ * @param order_id 订单编号 快递单号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function cancel_exchanges(send, callback) {
+    let settings = {
+        "url": host + "/cancel_exchanges/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
+ * 取消退货
+ * @param order_id 订单编号 快递单号
+ * @returns msg:返回信息,result：状态 ok\error
+ */
+async function cancel_refunds(send, callback) {
+    let settings = {
+        "url": host + "/cancel_refunds/",
+        "method": "POST",
+        "data": send
+    }
+    let return_data = { msg, result } = await request(settings)
+    callback(return_data)
+}
+
+/**
  * 获取一条公告
  * @param order_id 订单编号 快递单号
  * @returns msg:返回信息,result：状态 ok\error
@@ -282,7 +311,7 @@ async function get_userinfo(send, callback) {
 }
 
 /**
- * 获取用户个人信息
+ * 修改用户个人信息
  * @param order_id 订单编号
  * @returns msg:返回信息,result：状态 ok\error
  */

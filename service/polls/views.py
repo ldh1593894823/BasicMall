@@ -274,6 +274,25 @@ def refunds_exchanges(request):
         respons = {'result': 'error', 'msg': '异常'}
     return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
 
+#用户取消退货
+@require_POST
+def cancel_refunds(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+    order_id  = request.POST['order_id']
+    models.Order.objects.filter(id=order_id,order_status=4).update(order_status=0)
+    respons = {'result': 'ok', 'msg': '修改成功'}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
+
+#用户取消换货
+@require_POST
+def cancel_exchanges(request):
+    if (tools.valida_cookies(request.POST,'user')) != True:
+        return JsonResponse(return_nor_permi, json_dumps_params={'ensure_ascii': False})
+    order_id  = request.POST['order_id']
+    models.Order.objects.filter(id=order_id,order_status=6).update(order_status=0)
+    respons = {'result': 'ok', 'msg': '修改成功'}
+    return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
 
 @require_POST
 def add_evaluation(request):
@@ -320,4 +339,3 @@ def modify_userinfo(request):
     respons = {'result': 'ok', 'msg': '修改成功'}
     return JsonResponse(respons, json_dumps_params={'ensure_ascii': False})
 
-    

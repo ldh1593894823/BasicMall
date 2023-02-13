@@ -34,22 +34,30 @@
             <div class="shortcut">
                 <ul class="fl">
                     <li class="f-item">阿尼尔欢迎您！</li>
-                    <li class="f-item">请<a href="./user/login.html" target="_blank">登录</a>　|&nbsp;&nbsp;<span><a
-                                href="./user/register.html" target="_blank">免费注册</a></span></li>
+                    <li class="f-item">
+                        <a href="./user/login.html" target="_blank">登录
+
+                        </a>&nbsp;&nbsp;<span><a href="./user/register.html" target="_blank">免费注册</a>
+                        </span>
+                    </li>
                 </ul>
                 <div class="fr-list">
                     <ul class="types">
-                        <li class="f-item">
-                            <a href="/user/Personal Center/my_order.html" target="_blank">我的订单&nbsp;&nbsp;</a>
+                        <li class="f-item"><span>
+                                <a href="/user/Personal Center/my_order.html" target="_blank">我的订单</a>
                             </span>
                         </li>
-                        <li class="f-item"><span><a href="/user/Personal Center/my_info.html"
-                                    target="_blank">个人信息</a></span></li>
-                        <li class="f-item">&nbsp;&nbsp;<span>
-                                <a href="/user/Personal Center/shop_car.html" target="_blank">我的购物车&nbsp;&nbsp;</a>
-                            </span></li>
-                        <li class="f-item">&nbsp;&nbsp;<span> <a
-                                    href="/admin/admin/admin.html">商家后台&nbsp;&nbsp;</a></span>
+                        <li class="f-item"><span><a href="/user/Personal Center/my_info.html" target="_blank">个人信息</a>
+                            </span>
+                        </li>
+                        <li class="f-item"><span>
+                                <a href="/user/Personal Center/shop_car.html" target="_blank">我的购物车
+                                </a>
+                            </span>
+                        </li>
+                        <li class="f-item"><span>
+                                <a href="/admin/admin/admin.html">商家后台</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -58,11 +66,13 @@
 
         <div class="nav-logo">
             <div class="nav">
-                <div class="logo">
-                    <img src="/img//Logo.png" alt="logo">
-                </div>
-                <div style="margin-left: 1200px;">
-                    {{announcement_list}}
+                <div style="display: flex; flex-direction: row; height: 100px; width: 100%; align-items: center;justify-content: space-between;">
+                    <div class="logo">
+                        <img src="/img//Logo.png" alt="logo">
+                    </div>
+                    <div style="">
+                        {{announcement_list}}
+                    </div>
                 </div>
             </div>
 
